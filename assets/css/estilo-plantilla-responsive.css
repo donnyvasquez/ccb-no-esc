@@ -1,0 +1,294 @@
+@charset "utf-8";
+/* Medios fluidos sencillos
+   Nota: Los medios fluidos exigen la eliminación de los atributos de altura y anchura de los medios del código HTML
+   http://www.alistapart.com/articles/fluid-images/ 
+*/
+img, object, embed, video {
+	max-width: 100%;
+}
+/* IE 6 no admite max-width (anchura máxima), por lo que usa de manera predeterminada una anchura del 100% */
+.ie6 img {
+	width: 100%;
+}
+/*
+	Propiedades de cuadrícula fluida de Dreamweaver
+	----------------------------------
+	dw-num-cols-mobile:		5;
+	dw-num-cols-tablet:		8;
+	dw-num-cols-desktop:	10;
+	dw-gutter-percentage:	25;
+	
+	Inspiración obtenida de "Responsive Web Design" de Ethan Marcotte 
+	http://www.alistapart.com/articles/responsive-web-design
+	
+	y Golden Grid System de Joni Korpi
+	http://goldengridsystem.com/
+*/
+
+/* Diseño móvil: 480 px e inferior. */
+
+.gridContainer {
+	margin-left: auto;
+	margin-right: auto;
+	width: 87.36%;
+	padding-left: 1.82%;
+	padding-right: 1.82%;
+}
+#LayoutDiv1 {
+	clear: both;
+	float: left;
+	margin-left: 0;
+	width: 100%;
+	display: block;
+}
+
+/* Diseño tableta: de 481 px a 768 px. Hereda estilos de: Diseño móvil. */
+
+@media only screen and (min-width: 481px) {
+.gridContainer {
+	width: 90.675%;
+	padding-left: 1.1625%;
+	padding-right: 1.1625%;
+}
+#LayoutDiv1 {
+	clear: both;
+	float: left;
+	margin-left: 0;
+	width: 100%;
+	display: block;
+}
+}
+
+/* Diseño escritorio: de 769 px hasta un máximo de 1232 px.  Hereda estilos de: Diseño móvil y Diseño tableta. */
+
+@media only screen and (min-width: 769px) {
+.gridContainer {
+	width: 88.2%;
+	max-width: 980px;
+	padding-left: 0.9%;
+	padding-right: 0.9%;
+	margin: auto;
+}
+#LayoutDiv1 {
+	clear: both;
+	float: left;
+	margin-left: 0;
+	width: 100%;
+	display: block;
+}
+}
+/*Estilos elementos plantilla*/
+/*Fuente*/
+.TradeGothicLTPro-LightObl {
+	font-family: TradeGothicLTPro-LightObl;
+	font-weight: normal;
+	font-style: normal;
+}
+.TradeGothic-normal-italic {
+	font-family: TradeGothic;
+	font-weight: normal;
+	font-style: italic;
+}
+.TradeGothic-bold-italic {
+	font-family: TradeGothic;
+	font-weight: bold;
+	font-style: italic;
+}
+.TradeGothic-normal-normal {
+	font-family: TradeGothic;
+	font-weight: normal;
+	font-style: normal;
+}
+.TradeGothicLTPro-Light {
+	font-family: TradeGothicLTPro-Light;
+	font-weight: normal;
+	font-style: normal;
+}
+.TradeGothic-bold-normal {
+	font-family: TradeGothic;
+	font-weight: bold;
+	font-style: normal;
+}
+a:hover {
+	text-decoration: none;
+}
+body {
+	font-family: TradeGothicLTPro-Light, Open Sans, sans-serif;
+	font-size: 16px;
+	color: #1d1d26;
+	;
+}
+.plantilla-container {
+	margin: 0px auto;
+	padding: 0px;
+}
+.espacio15 {
+	font-size: 15px;
+	height: 15px;
+	clear: both
+}
+.espacio20 {
+	font-size: 20px;
+	height: 20px;
+	clear: both
+}
+.container-logo {
+	float: left;
+	margin: 0 0.4rem;
+}
+.container-logo-cac {
+	float: left;
+}
+.titulo-cabezote {
+	border-left: 1px solid #000;
+	float: left;
+	font-size: 30px;
+	margin: 0 0 0 10px;
+	padding: 10px 20px;
+	color: #a9aaaa;
+}
+.titulo-cabezote-cac {
+	border-left: 1px solid #000;
+	float: left;
+	font-size: 30px;
+	margin: 0 0 0 10px;
+	padding: 18px 20px;
+	color: #a9aaaa;
+}
+.salto {
+	clear: both;
+}
+.titulo-servicio {
+	background: #033864;
+	color: #fff;
+	font-size: 36px;
+	line-height: 2;
+	text-align: center;
+}
+.titulo-servicio-cac {
+	background: #033864;
+	color: #fff;
+	font-size: 36px;
+	line-height: 2;
+	text-align: center;
+	font-weight: normal;
+	margin: 10px 0 10px 0;
+	padding: 0;
+}
+p {
+	font-size: 16px;
+	color: #3F3B3C;
+}
+hr {
+	border: 0;
+	height: 1px;
+	background-color: #d5d4d4;
+	display: block;
+}
+.container-contacto {
+	float: left;
+	margin-right: 16px;
+}
+.titulo-contacto {
+	font-size: 16px;
+	color: #222222;
+	font-weight: bold;
+}
+.container-contacto-linea {
+	float: left;
+	border-left: 1px solid #d4d3d3;
+}
+.container-contacto-atencion {
+	margin-left: 16px;
+}
+.texto-contacto {
+	font-size: 14px;
+	color: #545152;
+}
+.texto-contacto a {
+	text-decoration: none;
+	margin-right: 8px;
+	color: #545152;
+	font-weight: bold;
+	font-size: 14px;
+}
+.texto-llamada {
+	margin-left: 8px;
+	color: #545152;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 14px;
+}
+.texto-llamada a {
+	font-size: 14px;
+	margin-left: 4px;
+	color: #545152;
+	text-decoration: none;
+	font-weight: bold;
+}
+.container-creditos {
+	background-color: #4c4849;
+	padding: 10px;
+}
+.container-creditos-texto {
+	margin: 0 auto;
+	padding: 15px;
+	text-align: center;
+}
+.container-creditos-texto a {
+	font-size: 12px;
+	color: #949293;
+	text-decoration: none;
+	margin-right: 8px;
+}
+.copy {
+	font-size: 11px;
+	color: #949293;
+	margin-left: 16px;
+	text-decoration: none;
+}
+.container-servicios {
+	padding: 15px;
+}
+.link-cree a {
+	font-size: 16px;
+	color: #D01648;
+	text-decoration: none;
+}
+.linea-servicios {
+	font-size: 12px;
+	font-weight: bold;
+	color: #333031;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.link-fortalezca a {
+	font-size: 16px;
+	color: #1D9DA3;
+	text-decoration: none;
+}
+.link-inscripciones a {
+	font-size: 16px;
+	color: #9F9A21;
+	text-decoration: none;
+}
+.link-servicios-cac {
+	font-size: 16px;
+	color: #000000;
+	text-decoration: none;
+}
+.link-servicios-arbitraje a {
+	font-size: 16px;
+	color: #ce1c4a;
+	text-decoration: none;
+}
+.link-servicios-conciliacion a {
+	font-size: 16px;
+	color: #279ca2;
+	text-decoration: none;
+}
+.link-servicios-insolvencia a {
+	font-size: 16px;
+	color: #f2b23b;
+	text-decoration: none;
+}

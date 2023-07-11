@@ -1,0 +1,187 @@
+@font-face {
+    font-family: 'icomoon';
+    src:    url('../images/icons/icomoon/fonts/icomoon.eot?7txs5q');
+    src:    url('../images/icons/icomoon/fonts/icomoon.eot?7txs5q#iefix') format('embedded-opentype'),
+        url('../images/icons/icomoon/fonts/icomoon.ttf?7txs5q') format('truetype'),
+        url('../images/icons/icomoon/fonts/icomoon.woff?7txs5q') format('woff'),
+        url('../images/icons/icomoon/fonts/icomoon.svg?7txs5q#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow-left:before {
+    content: "\e927";
+}
+.icon-add-new:before {
+    content: "\e900";
+}
+.icon-alert-danger .path1:before {
+    content: "\e901";
+    color: rgb(255, 255, 255);
+}
+.icon-alert-danger .path2:before {
+    content: "\e902";
+    margin-left: -1em;
+    color: rgb(232, 66, 57);
+}
+.icon-alert-danger-alt .path1:before {
+    content: "\e903";
+    color: rgb(253, 233, 233);
+}
+.icon-alert-danger-alt .path2:before {
+    content: "\e904";
+    margin-left: -1em;
+    color: rgb(232, 66, 57);
+}
+.icon-alert:before {
+    content: "\e905";
+}
+.icon-alert-info .path1:before {
+    content: "\e906";
+    color: rgb(255, 255, 255);
+}
+.icon-alert-info .path2:before {
+    content: "\e907";
+    margin-left: -1em;
+    color: rgb(21, 57, 96);
+}
+.icon-alert-info .path3:before {
+    content: "\e908";
+    margin-left: -1em;
+    color: rgb(21, 57, 96);
+}
+.icon-alert-info-alt .path1:before {
+    content: "\e909";
+    color: rgb(21, 57, 96);
+}
+.icon-alert-info-alt .path2:before {
+    content: "\e90a";
+    margin-left: -1em;
+    color: rgb(255, 255, 255);
+}
+.icon-alert-info-alt .path3:before {
+    content: "\e90b";
+    margin-left: -1em;
+    color: rgb(255, 255, 255);
+}
+.icon-alert-succes .path1:before {
+    content: "\e90c";
+    color: rgb(255, 255, 255);
+}
+.icon-alert-succes .path2:before {
+    content: "\e90d";
+    margin-left: -1em;
+    color: rgb(72, 174, 77);
+}
+.icon-alert-succes-alt .path1:before {
+    content: "\e90e";
+    color: rgb(226, 239, 226);
+}
+.icon-alert-succes-alt .path2:before {
+    content: "\e90f";
+    margin-left: -1em;
+    color: rgb(72, 174, 77);
+}
+.icon-alert-warning .path1:before {
+    content: "\e910";
+    color: rgb(255, 255, 255);
+}
+.icon-alert-warning .path2:before {
+    content: "\e911";
+    margin-left: -1em;
+    color: rgb(241, 179, 4);
+}
+.icon-alert-warning .path3:before {
+    content: "\e912";
+    margin-left: -1em;
+    color: rgb(241, 179, 4);
+}
+.icon-alert-warning-alt .path1:before {
+    content: "\e913";
+    color: rgb(254, 248, 230);
+}
+.icon-alert-warning-alt .path2:before {
+    content: "\e914";
+    margin-left: -1em;
+    color: rgb(241, 179, 4);
+}
+.icon-alert-warning-alt .path3:before {
+    content: "\e915";
+    margin-left: -1em;
+    color: rgb(241, 179, 4);
+}
+.icon-arrow-right:before {
+    content: "\e916";
+}
+.icon-close:before {
+    content: "\e917";
+}
+.icon-download:before {
+    content: "\e918";
+}
+.icon-edit-circled:before {
+    content: "\e919";
+}
+.icon-edit:before {
+    content: "\e91a";
+}
+.icon-help-tooltip .path1:before {
+    content: "\e91b";
+    color: rgb(21, 57, 96);
+}
+.icon-help-tooltip .path2:before {
+    content: "\e91c";
+    margin-left: -1em;
+    color: rgb(255, 255, 255);
+}
+.icon-certified-doc:before {
+    content: "\e91d";
+}
+.icon-download-alt:before {
+    content: "\e91e";
+}
+.icon-search:before {
+    content: "\e91f";
+}
+.icon-validated-doc:before {
+    content: "\e920";
+}
+.icon-progress-currently .path1:before {
+    content: "\e921";
+    color: rgb(168, 210, 162);
+}
+.icon-progress-currently .path2:before {
+    content: "\e922";
+    margin-left: -1em;
+    color: rgb(72, 174, 77);
+}
+.icon-progress-next:before {
+    content: "\e923";
+}
+.icon-progress-ready .path1:before {
+    content: "\e924";
+    color: rgb(72, 174, 77);
+}
+.icon-progress-ready .path2:before {
+    content: "\e925";
+    margin-left: -1em;
+    color: rgb(255, 255, 255);
+}
+.icon-required:before {
+    content: "\e926";
+}
