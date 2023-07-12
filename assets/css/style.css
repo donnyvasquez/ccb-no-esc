@@ -3796,37 +3796,37 @@ fieldset[disabled] .btn-default.focus {
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #337ab7;
-  border-color: #2e6da4;
+  color: #fff!important;
+  background-color: #337ab7!important;
+  border-color: #2e6da4!important;
 }
 
 .btn-primary:focus, .btn-primary.focus {
-  color: #fff;
-  background-color: #286090;
-  border-color: #122b40;
+  color: #fff!important;
+  background-color: #286090!important;
+  border-color: #122b40!important;
 }
 
 .btn-primary:hover {
-  color: #fff;
-  background-color: #286090;
-  border-color: #204d74;
+  color: #fff!important;
+  background-color: #286090!important;
+  border-color: #204d74!important;
 }
 
 .btn-primary:active, .btn-primary.active,
 .open > .btn-primary.dropdown-toggle {
-  color: #fff;
-  background-color: #286090;
-  border-color: #204d74;
+  color: #fff!important;
+  background-color: #286090!important;
+  border-color: #204d74!important;
 }
 
 .btn-primary:active:hover, .btn-primary:active:focus, .btn-primary:active.focus, .btn-primary.active:hover, .btn-primary.active:focus, .btn-primary.active.focus,
 .open > .btn-primary.dropdown-toggle:hover,
 .open > .btn-primary.dropdown-toggle:focus,
 .open > .btn-primary.dropdown-toggle.focus {
-  color: #fff;
-  background-color: #204d74;
-  border-color: #122b40;
+  color: #fff!important;
+  background-color: #204d74!important;
+  border-color: #122b40!important;
 }
 
 .btn-primary:active, .btn-primary.active,
@@ -3838,8 +3838,8 @@ fieldset[disabled] .btn-default.focus {
 fieldset[disabled] .btn-primary:hover,
 fieldset[disabled] .btn-primary:focus,
 fieldset[disabled] .btn-primary.focus {
-  background-color: #337ab7;
-  border-color: #2e6da4;
+  background-color: #337ab7!important;
+  border-color: #2e6da4!important;
 }
 
 .btn-primary .badge {
@@ -9764,7 +9764,13 @@ Example showing how to change the color/size of the icons:
   border-radius: 0.3em;
   outline: none;
 }
-
+.btn-payments {
+  background-color: #eee!important;
+  border: 1px solid #ccc!important;
+  height: 50px;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
 @media only screen and (max-width: 320px) {
   .btn, .enlaces-detalle-matricula > * a {
     font-size: 14px;
