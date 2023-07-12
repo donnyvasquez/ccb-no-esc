@@ -1,12 +1,14 @@
 ﻿body {
-    padding-top: 50px;
     padding-bottom: 20px;
+    display:flex;
+    flex-direction: column;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    min-height: 30vh;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -15,7 +17,27 @@
 .dl-horizontal dt {
     white-space: normal;
 }
-
+.d-flex{
+    display: flex;
+}
+.flex-column {
+    flex-direction: column;
+}
+.align-items-center{
+    align-items: center;
+}
+.gap-0{
+    gap: 0;
+}
+.gap-1{
+    gap: 0.5rem;
+}
+.gap-2{
+    gap: 0.75rem;
+}
+.gap-3{
+    gap: 1.125rem;
+}
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
