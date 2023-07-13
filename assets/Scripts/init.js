@@ -28,6 +28,6 @@
 
 jQuery(document).ready(function(){
 	console.log('Activando el colorbox');
-	jQuery(".iframe").colorbox({iframe:true, width:"60%", height:"80%"});
+	jQuery(".iframe").colorbox({iframe:true, width:"90%",maxWidth:"90%", height:"80%"});
 	
   });
