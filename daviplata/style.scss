@@ -1,0 +1,21 @@
+$primary: rgb(180, 0, 0);
+$secondary: rgb(130, 130, 130);
+.combo-fields{
+  margin-bottom: 2rem;
+  .form-floating:first-child{
+    .form-select{
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      border-width: 3px;
+    }
+  }
+  .form-floating:last-child{
+    .form-control{
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+      border-width: 3px;
+      border-top: 0;
+    }
+  }
+}
+@import "../node_modules/bootstrap/scss/bootstrap";
