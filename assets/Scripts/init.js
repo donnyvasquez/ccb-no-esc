@@ -28,6 +28,13 @@
 
 jQuery(document).ready(function(){
 	console.log('Activando el colorbox');
-	jQuery(".iframe").colorbox({iframe:true, width:"90%",maxWidth:"90%", height:"80%"});
+	jQuery(".iframe").colorbox({iframe:true, width:"90%",maxWidth:"90%", height:"70%", onComplete: function() {
+		$(window).on("resize", function() {
+		  $.colorbox.resize({
+			width: $(window).width() > 960 ? "960px" : "90%",
+			height: $(window).height() > 600 ? "600px" : "90%"
+		  });
+		});
+	  }});
 	
   });
