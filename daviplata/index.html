@@ -8,29 +8,20 @@
 </head>
 <body>
 
-  <div class="toast sticky-top show fade align-items-center text-bg-warning border-0 w-auto mx-2 mt-3" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="d-flex">
-      <div class="toast-body">
-        Por favor no cierres esta ventana. En los próximos <span id="countdown" class="fw-bold"></span> estaremos pendientes de tu pago.
-      </div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-  </div>
-
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 col-md-6 my-4">
-        <header class="mb-3">
-          <img width="160" src="../assets/images/btn-daviplata.webp" alt="">
+        <header class="text-center text-md-start">
+          <img width="240" src="../assets/images/logo-daviplata.svg" alt="Logo Daviplata" class="pe-md-5 w-50" height="100">
         </header>
-        <p class="fw-bold">Por favor digita tus datos</p>
+        <p class="fw-bold text-center text-md-start">Por favor digita tus datos</p>
         <form  class="needs-validation" novalidate>
           <div class="d-flex flex-column combo-fields">
             <div class="form-floating">
               <select onChange="obtenerTipoDocumento()" class="form-select" id="documentType" aria-label="Selector de Tipo de Documento">
-                <option value="CC" selected>Cédula de ciudadanía</option>
-                <option value="CE">Cedula de extranjería</option>
-                <option value="TI">Tarjeta de indentidad</option>
+                <option value="CC" selected>Cédula de Ciudadanía</option>
+                <option value="CE">Cedula de Extranjería</option>
+                <option value="TI">Tarjeta de Indentidad</option>
               </select>
               <label for="documentType">Tipo de documento</label>
             </div>
@@ -43,7 +34,7 @@
             </div>
           </div>
           <div class="d-flex flex-column gap-3">
-            <button class="col btn btn-primary" type="submit">Continuar</button>
+            <button class="col btn btn-daviplata text-white" type="submit">Continuar</button>
             <button id="btnCancelar" name="Cancelar pago con Daviplata" class="col btn btn-outline-secondary" type="button" role="button">Cancelar</button>
           </div>
         </form>
@@ -84,14 +75,12 @@
       </div>
     </div>
   </div>
-  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <img src="..." class="rounded me-2" alt="...">
-      <strong class="me-auto">Bootstrap</strong>
-      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-    <div class="toast-body">
-      Por favor no cierres esta ventana. En los próximos 10 minutos estaremos pendientes de tu pago.
+  <div class="toast sticky-bottom show fade align-items-center text-bg-dark border-0 w-auto mx-2 mt-3" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body">
+        Por favor no cierres esta ventana. En los próximos <span class="fw-bold text-daviplata">10 minutos</span> estaremos pendientes de tu pago.
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto d-none" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
   </div>
   <script src="dist/js/bootstrap.bundle.js"></script>
