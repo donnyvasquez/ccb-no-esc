@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pagar con Daviplata</title>
+  <title>Pagar con Daviplata HU2</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,28 +14,27 @@
         <header class="text-center text-md-start">
           <img width="240" src="../assets/images/logo-daviplata.svg" alt="Logo Daviplata" class="pe-md-5 w-50" height="100">
         </header>
-        <p class="fw-bold text-center text-md-start">Por favor digita tus datos</p>
-        <form  class="needs-validation" action="hu2.html" novalidate>
-          <div class="d-flex flex-column combo-fields">
-            <div class="form-floating">
-              <select onChange="obtenerTipoDocumento()" class="form-select" id="documentType" aria-label="Selector de Tipo de Documento">
-                <option value="CC" selected>Cédula de Ciudadanía</option>
-                <option value="CE">Cedula de Extranjería</option>
-                <option value="TI">Tarjeta de Indentidad</option>
-              </select>
-              <label for="documentType">Tipo de documento</label>
-            </div>
-            <div class="form-floating">
-              <input required type="number" class="form-control" id="documentNumber" placeholder="Número de documento">
-              <div class="invalid-feedback">
-                Por favor, igresa un número válido de <span id="selectedValue"></span>
+        <h3 class="fw-bold text-center text-md-start h5">Por favor escribe el código enviado a tu celular</h3>
+        <form  class="needs-validation" action="hu2-confirmation.html" novalidate>
+          <div class="d-flex flex-column">
+            <div class="input-group flex-nowrap">
+              <img class="img input-group-text" src="../assets/ring-phone.png" height="58" />
+              <div class="form-floating mb-4">
+                <input required type="text" pattern="[0-9]{6}" minlength="6" maxlength="6" class="form-control" id="documentNumber" placeholder="Número de documento">
+                <div class="invalid-feedback">
+                  Por favor, igresa el código.
+                </div>
+                <label for="documentNumber">Número de documento</label>
               </div>
-              <label for="documentNumber">Número de documento</label>
             </div>
+            <p class="text-body-tertiary text-center text-md-start lh-1"><span class="d-none d-md-inline">Estimado cliente. </span>Si el mensaje de confirmación no llega, recibirás una llamada donde se te informará dicho código</p>
           </div>
           <div class="d-flex flex-column gap-3">
-            <button class="col btn btn-daviplata text-white" type="submit">Continuar</button>
-            <button id="btnCancelar" name="Cancelar pago con Daviplata" class="col btn btn-outline-secondary" type="button" role="button">Cancelar</button>
+            <button class="col btn btn-daviplata text-white" type="submit">Efectuar pago</button>
+            <div class="d-flex gap-3">
+              <button class="col btn btn-outline-daviplata" type="button">Generar nuevo código</button>
+              <button id="btnCancelar" name="Cancelar pago con Daviplata" class="col btn btn-outline-secondary" type="button" role="button">Cancelar</button>
+            </div>
           </div>
         </form>
       </div>
@@ -104,7 +103,6 @@
 			event.preventDefault()
 			event.stopPropagation()
 			}
-      obtenerTipoDocumento()
 			form.classList.add('was-validated')
 		}, false)
 		})

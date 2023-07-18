@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HU01</title>
+    <script src="assets/lightbox.min.js.descarga"></script>
+    <link type="text/css" rel="stylesheet" href="assets/lightbox.css">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/icomoon/assets/icomoon.css">
+    <link href="assets/jquery.flexdatalist.css" rel="stylesheet">
+    <link href="assets/jquery.flexdatalist.min.css" rel="stylesheet">
+    <link href="assets/estilo-plantilla-responsive.css" rel="stylesheet">
+    <!-- <link href="css/CCB-Tipografia.css" rel="stylesheet"> -->
+    <script src="assets/modernizr-2.6.2.js.descarga"></script>
+</head>
+<body>
+    <header class="header clearfix">
+        <div class="container">
+            <nav class="navbar-header">
+                <div class="">
+                    <span class="logo"><img src="assets/logo-ccb.svg" alt="Camara de Comercio de Bogotá"></span>
+                    <div class="rotulo-general-servicio-virtual hidden-xs hidden-sm">Servicio Virtual</div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="rotulo-servicio">
+        <h1><span id="titulo-servicio">Inscripción de documentos</span></h1>
+    </div>
+    <div class="pagina no-margin" id="listaPasos">
+        <div class="encabezado">
+            <div class="progress-info center paso3">
+                <div class="line-progress-ready"></div>
+                <div class="line-progress"></div>
+                <ul class="progress-list">
+                    <li class="item-ingresar">
+                        <span class="icon-progress-ready"><span class="path1"></span><span class="path2"></span></span>
+                        <span class="icon-progress-currently"><span class="path1"></span><span class="path2"></span></span>
+                        <span class="icon-progress-next"></span>
+                        <p>INGRESAR</p>
+                    </li>
+                    <li class="item-diligenciar">
+                        <span class="icon-progress-ready"><span class="path1"></span><span class="path2"></span></span>
+                        <span class="icon-progress-currently"><span class="path1"></span><span class="path2"></span></span>
+                        <span class="icon-progress-next"></span>
+                        <p>DILIGENCIAR</p>
+                    </li>
+                    <li class="item-pagar">
+                        <span class="icon-progress-ready"><span class="path1"></span><span class="path2"></span></span>
+                        <span class="icon-progress-currently"><span class="path1"></span><span class="path2"></span></span>
+                        <span class="icon-progress-next"></span>
+                        <p>PAGAR</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>    
+    <div class="container body-content">
+        
+<div data-bind="visible: mostrarEmpSocial" style="display: none;">
+    <div class="row" style="padding-bottom:2em">
+        <div class="col-sm-12">
+            <h3 class="rotulo" data-bind="text: tituloEmpSocial"></h3>
+        </div>
+        <div class="col-sm-12">
+            <div class="col-sm-1 right paragraph">
+                <h8 class="text-justify" data-bind="text: mensajeEmpSocial"></h8>
+            </div>
+            <br>
+            <div class="col-sm-1 right paragraph">
+                <h8 class="text-justify" data-bind="text: preguntaEmpSocial"></h8>
+            </div>
+        </div>
+        <div style="padding-left: 5%;padding-top:1rem;">
+            <div>
+                <span style="padding-right: 0.5em;">Si</span>
+                <input type="radio" name="manejaEmprendimientoSocial" id="" value="true" data-bind="checked: esEmpSocial">
+                <span style="padding-right: 0.5em; padding-left: 1em;">No</span>
+                <input type="radio" name="manejaEmprendimientoSocial" id="" value="false" data-bind="checked: esEmpSocial">
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>
+<div class="loader" style="display: none;"></div>
+<div data-bind="visible: manejaFactEl &amp;&amp; mostrarFactElect" style="">
+    <div data-bind="visible: esPersonaNatural() &amp;&amp; !bCambioCliente()" style="">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3 class="rotulo">Información para Factura Electrónica</h3>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-1 right" style="padding-right:0px;width:fit-content">
+                    <span class="icon-alert-warning-red-alt"><span class="path1"></span><span class="path2"></span><span class="path3"></span></span>
+                </div>
+                <div class="col-sm-11" style="padding:0%">
+                    <h8 class="text-justify">De acuerdo con la normatividad, la factura electrónica puede ser emitida a nombre del adquiriente del servicio (nombre propio) o al consumidor final (sin datos del adquiriente). La factura de venta a nombre de consumidor final, donde el cliente no suministre su número de identificación y nombre o razón social completo NO podrá usarse como soporte de costos, gastos, deducciones e impuestos descontables.</h8>
+                </div>
+            </div>
+        </div>
+        <div style="padding-left: 5%;" id="divOpcionesFactura">
+            <div class="radio">
+                <label>
+                    <input type="radio" name="opcionFactura" id="" value="nombrePropio" disabled="disabled">
+                    A nombre propio
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="opcionFactura" id="" value="datosGenericos" disabled="disabled">
+                    Consumidor final
+                </label>
+            </div>
+        </div>
+    </div>
+    <div id="dvDatosFacturaElec" style="display:none">
+        <b>Nota:</b> Su factura electrónica llegara al correo electrónico informado, si ya es facturador electrónico debe indicar el correo suministrado en el proceso de habilitación ante la DIAN
+        <br>
+        <br>
+        <div style="padding-left: -5%;font-size:13px" class="text-justify">
+            Al momento de diligenciar el formulario autoriza a la Cámara de Comercio de Bogotá – CCB, NIT. 860007322 9, domiciliada y ubicada en Bogotá - Colombia en la Avenida el Dorado No. 68 D - 35, teléfono 3830330 y página web: <a href="https://www.ccb.org.co/" target="_blank">www.ccb.org.co</a>, como responsable del tratamiento de datos personales a recopilar, almacenar, usar y circular los datos por usted incluidos para: a) expedir la factura electrónica, b) transmitir la información al proveedor tecnológico, c) transferir la información a la DIAN. Estas finalidades se podrán realizar a través de medios físicos, digitales, electrónicos o telefónicos. Usted podrá consultar la Política de Protección de Datos Personales en <a href="https://www.ccb.org.co/protecciondedatospersonales" target="_blank">www.ccb.org.co/protecciondedatospersonales</a>, Para resolver dudas e inquietudes relacionadas con el tratamiento de los datos, presentar sus solicitudes y/o ejercer sus derechos puede escribir al correo <a href="mailto:protecciondedatos@ccb.org.co">protecciondedatos@ccb.org.co</a>, previo  cumplimiento de lo descrito en el Artículo 2.2.2.25.4.1 del Decreto 1074 de 2015. Así mismo, le informamos que sus derechos como titular de datos personales son: (i) Acceder en forma gratuita a los datos proporcionados que hayan sido objeto de tratamiento. (ii) Conocer, actualizar y rectificar su información frente a datos parciales, inexactos, incompletos, fraccionados, que induzcan a error, o a aquellos cuyo tratamiento esté prohibido o no haya sido autorizado. (iii) Solicitar prueba de la autorización otorgada. (iv) Presentar ante la Superintendencia de Industria y Comercio (SIC) quejas por infracciones a lo dispuesto en la normatividad vigente. (v) Revocar la autorización y/o solicitar la supresión del dato, siempre que no exista un deber legal o contractual que impida eliminarlos. (vi) Abstenerse de responder las preguntas sobre datos sensibles.
+        </div>
+        <br>
+
+        <div class="switch-button">
+            <span>¿Desea cambiar el nombre del cliente de la factura?</span>
+            <input type="checkbox" name="switch-button" id="switch-label" class="switch-button__checkbox" disabled="true">
+            <label for="switch-label" class="switch-button__label" id="lbl_switch"><div id="divTextochk" class="alineadoDerecha">No</div></label>
+        </div>
+        <br>
+        <br>
+
+        <div id="DivClientes" style="display: none;">
+<div id="divBusqueda">
+    <div class="row Separador">
+        <div class="col-sm-12">
+            <h3 class="rotulo">Buscar Cliente</h3>
+        </div>
+    </div>
+    <div class="row Separador">
+        <div class="col-sm-12">
+            <div class="col-sm-5">
+                <div class="btn-group clearfix dropdown">
+                    <label class="control-label">Tipo de Documento:</label>
+                    <div class="dropdown-campo has-error">
+                        <select class="form-control sinAncho ng-pristine ng-valid ng-touched required dvClientes" id="TipoDocumentoCliente"><option value="">SELECCIONE</option></select>
+                        <div class="icon-container">
+                            <svg class="icon icon-arrow-right">
+                                <use xlink:href="#arrow-right">
+                                    <svg id="arrow-right" viewBox="0 0 1024 1024">
+                                        <title>arrow-right</title>
+                                        <path class="path1" d="M320.717 980.378c-4.403 0-8.602-1.587-11.853-4.89-6.502-6.502-6.502-17.101 0-23.603l439.962-439.91-439.962-439.859c-6.502-6.502-6.502-17.075 0-23.603 6.477-6.528 17.101-6.528 23.629 0l463.437 463.462-463.437 463.514c-3.328 3.302-7.552 4.89-11.776 4.89z"></path>
+                                    </svg>
+                                </use>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="numID" class="col-sm-7">
+                <div class="btn-group clearfix dropdown">
+                    <label class="control-label">Número de Documento:</label>
+                    <div class="has-error">
+                        <input class="form-control sinAncho ng-pristine ng-invalid ng-touched required dvClientes" id="numDocumentoCliente">
+                    </div>
+                </div>
+            </div>
+            <div id="dgVer" class="hide-div">
+                <div class="btn-group clearfix dropdown">
+                    <label class="control-label">Digito de verificación:</label>
+                    <div class="has-error">
+                        <input class="form-control sinAncho ng-pristine ng-invalid ng-touched required dvClientes" id="digitoVerificacion" maxlength="1">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="center" >
+        <button class="btn grabar-cont" id="btnBuscarCliente" >Buscar</button>
+        <br>
+    </div>
+</div>
+<div id="divConsulta" style="display: none;">
+    <div class="row" data-bind="ifnot: existeClienteB">
+        <br>
+        <div class="col-md-12">
+            <h6 class="text-center">Cliente no encontrado en la CCB</h6>
+        </div>
+    </div>
+    <table class="table table-striped text-center sin-borde ancho" data-bind="if: existeClienteB"></table>
+    <div class="center">
+        <button class="btn grabar-cont" id="btnSeleccionarCliente" data-bind="visible: existeClienteB" style="display: none;">Seleccionar</button>
+        <button class="btn grabar-cont" id="btnVolver">Volver</button>
+        <br>
+    </div>
+</div>
+        </div>
+        <div id="FrontVirtual">
+            <div class="row Separador">
+                <div class="col-sm-12">
+                    <div class="col-sm-5">
+                        <div class="btn-group clearfix dropdown">
+                            <label class="control-label">Tipo de Documento:</label>
+                            <div class="dropdown-campo">
+                                <select class="form-control sinAncho ng-pristine ng-valid ng-touched" id="TipoDocumento" data-bind="options: ListaTipoDocumento,
+                                    value: TipoDocumentoSelected,
+                                    optionsText: &#39;nom_tipoDocumento&#39;,
+                                    optionsValue: &#39;id_tipoDocumento&#39;,
+                                    optionsCaption: &#39;SELECCIONE&#39;" disabled=""><option value="">SELECCIONE</option></select>
+                                <div class="icon-container">
+                                    <svg class="icon icon-arrow-right">
+                                        <use xlink:href="#arrow-right">
+                                            <svg id="arrow-right" viewBox="0 0 1024 1024">
+                                                <title>arrow-right</title>
+                                                <path class="path1" d="M320.717 980.378c-4.403 0-8.602-1.587-11.853-4.89-6.502-6.502-6.502-17.101 0-23.603l439.962-439.91-439.962-439.859c-6.502-6.502-6.502-17.075 0-23.603 6.477-6.528 17.101-6.528 23.629 0l463.437 463.462-463.437 463.514c-3.328 3.302-7.552 4.89-11.776 4.89z"></path>
+                                            </svg>
+                                        </use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <br>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="btn-group clearfix dropdown">
+                            <label class="control-label">Número de Documento:</label>
+                            <div>
+                                <input class="form-control sinAncho ng-pristine ng-invalid ng-touched" id="numDocumento" data-bind="textInput: numId" disabled="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="dvNombres" data-bind="if: esPersonaNatural">
+                <div class="row Separador">
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <div class="btn-group clearfix dropdown">
+                                <label class="control-label">Primer Nombre:</label>
+                                <div>
+                                    <input class="form-control sinAncho ng-pristine ng-invalid ng-touched" id="primerNombre" data-bind="textInput: primerNombre" disabled="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <br>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="btn-group clearfix dropdown">
+                                <label class="control-label">Segundo Nombre:</label>
+                                <div>
+                                    <input class="form-control sinAncho ng-pristine ng-invalid ng-touched" id="segundoNombre" data-bind="textInput: segundoNombre" disabled="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row Separador">
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <div class="btn-group clearfix dropdown">
+                                <label class="control-label">Primer Apellido:</label>
+                                <div>
+                                    <input class="form-control sinAncho ng-pristine ng-invalid ng-touched" id="primerApellido" data-bind="textInput: primerApellido" disabled="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <br>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="btn-group clearfix dropdown">
+                                <label class="control-label">Segundo Apellido:</label>
+                                <div>
+                                    <input class="form-control sinAncho ng-pristine ng-invalid ng-touched" id="segundoApellido" data-bind="textInput: segundoApellido" disabled="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row Separador" id="dvRazonSocial" data-bind="ifnot: esPersonaNatural"></div>
+            <div class="row Separador">
+                <div class="col-sm-12">
+                    <div class="col-sm-5">
+                        <div class="btn-group clearfix dropdown">
+                            <label class="control-label">País de residencia:<abbr title="Requerido">*</abbr></label>
+                            <div class="dropdown-campo">
+                                <select class="form-control sinAncho ng-pristine ng-valid ng-touched required" id="pais" disabled="true"><option value="">SELECCIONE</option></select>
+                                <div class="icon-container">
+                                    <svg class="icon icon-arrow-right">
+                                        <use xlink:href="#arrow-right">
+                                            <svg id="arrow-right" viewBox="0 0 1024 1024">
+                                                <title>arrow-right</title>
+                                                <path class="path1" d="M320.717 980.378c-4.403 0-8.602-1.587-11.853-4.89-6.502-6.502-6.502-17.101 0-23.603l439.962-439.91-439.962-439.859c-6.502-6.502-6.502-17.075 0-23.603 6.477-6.528 17.101-6.528 23.629 0l463.437 463.462-463.437 463.514c-3.328 3.302-7.552 4.89-11.776 4.89z"></path>
+                                            </svg>
+                                        </use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <br>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="btn-group clearfix dropdown">
+                            <label class="control-label">Departamento:<abbr title="Requerido">*</abbr></label>
+                            <div class="dropdown-campo">
+                                <select class="form-control sinAncho ng-pristine ng-valid ng-touched required" id="departamento" disabled="true"><option value="">SELECCIONE</option></select>
+                                <div class="icon-container">
+                                    <svg class="icon icon-arrow-right">
+                                        <use xlink:href="#arrow-right">
+                                            <svg id="arrow-right" viewBox="0 0 1024 1024">
+                                                <title>arrow-right</title>
+                                                <path class="path1" d="M320.717 980.378c-4.403 0-8.602-1.587-11.853-4.89-6.502-6.502-6.502-17.101 0-23.603l439.962-439.91-439.962-439.859c-6.502-6.502-6.502-17.075 0-23.603 6.477-6.528 17.101-6.528 23.629 0l463.437 463.462-463.437 463.514c-3.328 3.302-7.552 4.89-11.776 4.89z"></path>
+                                            </svg>
+                                        </use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row Separador">
+                <div class="col-sm-12">
+                    <div class="col-sm-5">
+                        <div class="btn-group clearfix dropdown">
+                            <label class="control-label">Ciudad/Municipio:<abbr title="Requerido">*</abbr></label>
+                            <div class="dropdown-campo">
+                                <select class="form-control sinAncho ng-pristine ng-valid ng-touched required" id="ciudad" disabled="true"><option value="">SELECCIONE</option></select>
+                                <div class="icon-container">
+                                    <svg class="icon icon-arrow-right">
+                                        <use xlink:href="#arrow-right">
+                                            <svg id="arrow-right" viewBox="0 0 1024 1024">
+                                                <title>arrow-right</title>
+                                                <path class="path1" d="M320.717 980.378c-4.403 0-8.602-1.587-11.853-4.89-6.502-6.502-6.502-17.101 0-23.603l439.962-439.91-439.962-439.859c-6.502-6.502-6.502-17.075 0-23.603 6.477-6.528 17.101-6.528 23.629 0l463.437 463.462-463.437 463.514c-3.328 3.302-7.552 4.89-11.776 4.89z"></path>
+                                            </svg>
+                                        </use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <br>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="btn-group clearfix dropdown">
+                            <label class="control-label">Dirección de residencia:<abbr title="Requerido">*</abbr></label>
+                            <div>
+                                <input class="form-control sinAncho ng-pristine ng-invalid ng-touched required" id="direccion" minlength="8" maxlength="280" disabled="true">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row Separador">
+                <div class="col-sm-12">
+                    <div class="col-sm-12">
+                        <div class="btn-group clearfix dropdown">
+                            <label class="control-label">Teléfono:<abbr title="Requerido">*</abbr></label>
+                            <div>
+                                <input class="form-control sinAncho ng-pristine ng-invalid ng-touched required" type="text" placeholder="Número entre 7 y 24 dígitos" required="" id="telefono" oninput="this.value = this.value.replace(/[^0-9.]/g, &#39;&#39;).replace(/(\..*?)\..*/g, &#39;$1&#39;);" disabled="true">
+                                <span id="mensajeTelefono" style="color: red; display: none;" data-bind="visible:mostrarMensTel">Teléfono invalido</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row Separador">
+                <div class="col-sm-12">
+                    <div class="col-sm-12">
+                        <div class="btn-group clearfix dropdown">
+                            <label class="control-label">Correo Electrónico Factura Electrónica:<abbr title="Requerido">*</abbr></label>
+                            <div>
+                                <input class="form-control sinAncho ng-pristine ng-invalid ng-touched required" id="correo" title="Digíte su correo electrónico" type="email" disabled="true">
+                                <span id="mensajeCorreo" style="color: red; display: none;" data-bind="visible:mostrarMensCorreo">Dirección email no valida</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row Separador">
+                <div class="col-sm-12">
+                    <div class="col-sm-12">
+                        <div class="btn-group clearfix dropdown">
+                            <label class="control-label">Confirmación Correo Electrónico:<abbr title="Requerido">*</abbr></label>
+                            <div>
+                                <input class="form-control sinAncho ng-pristine ng-invalid ng-touched required" title="Digíte de nuevo su correo electrónico" id="correoConfirmacion" type="email" autocomplete="disabled" disabled="true">
+                                <span id="mensajeCorreoConf" style="color: red; display: none;" data-bind="visible:mostrarMensCorreoConf">El correo y la confirmación no coinciden</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row Separador">
+                <div class="col-sm-12">
+                    <div class="col-sm-5">
+                        <div class="btn-group clearfix dropdown">
+                            <label class="control-label">
+                                Régimen Fiscal:<abbr title="Requerido">*</abbr>
+                            </label>
+                            <div class="dropdown-campo">
+                                <select class="form-control sinAncho ng-pristine ng-valid ng-touched required" id="regFiscal" disabled="true"><option value="">SELECCIONE</option></select>
+                                <div class="icon-container">
+                                    <svg class="icon icon-arrow-right">
+                                        <use xlink:href="#arrow-right">
+                                            <svg id="arrow-right" viewBox="0 0 1024 1024">
+                                                <title>arrow-right</title>
+                                                <path class="path1" d="M320.717 980.378c-4.403 0-8.602-1.587-11.853-4.89-6.502-6.502-6.502-17.101 0-23.603l439.962-439.91-439.962-439.859c-6.502-6.502-6.502-17.075 0-23.603 6.477-6.528 17.101-6.528 23.629 0l463.437 463.462-463.437 463.514c-3.328 3.302-7.552 4.89-11.776 4.89z"></path>
+                                            </svg>
+                                        </use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <br>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="btn-group clearfix dropdown">
+                            <label class="control-label">Tributos:<abbr title="Requerido">*</abbr></label>
+                            <div class="dropdown-campo">
+                                <select class="form-control sinAncho ng-pristine ng-valid ng-touched required" id="ddlTributo" disabled="true"><option value="">SELECCIONE</option></select>
+                                <div class="icon-container">
+                                    <svg class="icon icon-arrow-right">
+                                        <use xlink:href="#arrow-right">
+                                            <svg id="arrow-right" viewBox="0 0 1024 1024">
+                                                <title>arrow-right</title>
+                                                <path class="path1" d="M320.717 980.378c-4.403 0-8.602-1.587-11.853-4.89-6.502-6.502-6.502-17.101 0-23.603l439.962-439.91-439.962-439.859c-6.502-6.502-6.502-17.075 0-23.603 6.477-6.528 17.101-6.528 23.629 0l463.437 463.462-463.437 463.514c-3.328 3.302-7.552 4.89-11.776 4.89z"></path>
+                                            </svg>
+                                        </use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row Separador" id="dvRowDescripcionTributo" style="display:none">
+                <div class="col-sm-12">
+                    <div class="col-sm-12">
+                        <div class="btn-group clearfix dropdown">
+                            <label class="control-label">Descripción Tributo:<abbr title="Requerido">*</abbr></label>
+                            <div>
+                                <div id="dvDescripcionTributo">
+                                    <input type="text" placeholder="Escriba descripción tributo" class="form-control sinAncho ng-pristine ng-invalid ng-touched required" id="txtInputdescripcionTributo" maxlength="30" disabled="true">
+                                </div>
+                                <input class="form-control sinAncho ng-pristine ng-invalid ng-touched" style="display:none" id="txtdescripcionTributo" disabled="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row Separador">
+                <div class="col-sm-12">
+                    <div class="col-sm-12">
+                        <div class="btn-group clearfix dropdown">
+                            <label class="control-label">Responsabilidades Fiscales:<abbr title="Requerido Max(5)">*</abbr></label>
+                            <div>
+                                
+                                <input class="form-control sinAncho ng-pristine ng-invalid ng-touched" style="display:block" id="txtRespFiscal" disabled="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="center">
+                <button class="btn grabar-cont" id="btnActualizarFE" style="display:none">Continuar</button>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3 class="rotulo" id="tituloResumen" style="display:block">Resumen y selección de medios de pago</h3>
+<div id="dvInfoPago" style="display:block">
+    <div class="resumen-pago orden-compra">
+        <div class="item-cantidad confirmacion-pago">
+            <div class="detalle">
+                <div>
+                    Número de solicitud
+                </div>
+                <div class="">
+                    <span data-bind="text: numeroSolicitud">20204462</span>
+                </div>
+            </div>
+        </div>
+        <div class="item-cantidad confirmacion-pago">
+            <div class="detalle">
+                <div>
+                    Estado de solicitud
+                </div>
+                <div class="en-progreso">
+                    <span data-bind="text: estado">En Proceso</span>
+                </div>
+            </div>
+        </div>
+        <div class="item-cantidad confirmacion-pago">
+            <div class="detalle">
+                <div>
+                    Fecha de generación
+                </div>
+                <div class="">
+                    <span data-bind="text: fechaGeneracion">jueves 6 de julio, 2023</span>
+                </div>
+            </div>
+        </div>
+        <div class="item-cantidad confirmacion-pago">
+            <div class="detalle">
+                <div>
+                    Correo de envío orden de pago
+                </div>
+                <div class="">
+                    <span data-bind="text: email">paula@gmail.com</span>
+                </div>
+            </div>
+        </div>
+        <div class="item-cantidad confirmacion-pago">
+            <div class="detalle">
+                <div>
+                    Valor orden
+                </div>
+                <div class="">
+                    <span data-bind="text: valorCurrency">$310,300</span>
+                </div>
+            </div>
+        </div>
+        <div class="item-cantidad confirmacion-pago">
+            <div class="detalle">
+                <div>
+                    Valor IVA
+                </div>
+                <div class="">
+                    <span data-bind="text: ivaCurrency">$0</span>
+                </div>
+            </div>
+        </div>
+        <div class="item-cantidad confirmacion-pago">
+            <div class="detalle">
+                <div>
+                    Servicio
+                </div>
+                <div class="">
+                    <span data-bind="text: servicio">Inscripción de documentos</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+
+<div data-bind="visible: vencida" id="vencida" style="display: none;">
+    <div class="row">
+        <div class="alert alert-warning" role="alert">
+            <h4 class="alert-heading">Lo sentimos!</h4>
+            <p> Su Orden de pago se encuentra vencida</p>
+        </div>
+    </div>
+</div>
+<div id="pasarelas">
+    <div data-bind="visible: PasarelaCCB" style="display: none;">
+        <h4 class="center">Seleccione el medio de pago</h4>
+        <div class="forma-pago">
+            <div data-bind="visible: PSE" class="radio" style="">
+                <label>
+                    <input type="radio" name="formapago" id="" value="pse" checked="1" data-bind="checked: medioPago">
+                    <img src="assets/ccb_pse.png" alt=""> Débito automático PSE
+                </label>
+            </div>
+            <div data-bind="visible: VISA" class="radio" style="display: none;">
+                <label>
+                    <input type="radio" name="formapago" id="" value="visa" data-bind="checked: medioPago">
+                    <img src="assets/ccb_visa.png" alt=""> Tarjeta de crédito Visa
+                </label>
+            </div>
+            <div data-bind="visible: MASTER" class="radio" style="display: none;">
+                <label>
+                    <input type="radio" name="formapago" id="" value="mastercard" data-bind="checked: medioPago">
+                    <img src="assets/ccb_mastercard.png" alt=""> Tarjeta de crédito MasterCard
+                </label>
+            </div>
+
+        </div>
+        <div>
+            <a class="link-descarga" target="_blank" href="https://calidad.ccb.org.co/ApiPasarelaPagosGateway/api/ordenes/descargar?numeroOrden=20204462&amp;ServicioId=29"><span class="icon-download"></span></a>
+            <p style="display: inline">Descargar orden de pago para pago en bancos o sedes CCB</p>
+        </div>
+        <div class="center">
+            <button class="btn grabar-cont" data-bind="click: continuarPago">Continuar al pago</button>
+        </div>
+    </div>
+    <div data-bind="visible: PasarelaEvertec" style="">
+
+        
+        <div class="row">
+        </div>
+        <div class="row" style=" text-align:center;">
+            <h4>Usted tiene las siguientes alternativas para realizar el pago:</h4>
+        </div>
+        <div class="row mbl">
+            <div class="col-sm-8">
+            <div class="mtn alert alert-warning" role="alert">
+                <h4 class="alert-heading">Recuerde que!</h4>
+                <p> Será direccionado  a <a href="https://www.placetopay.com/web/" target="_blank"> <img src="assets/placetopay-logo.svg" width="12%"></a>,  si al momento de realizar el pago los valores no coinciden , favor comunicarse con la linea de atencion al cliente de la CCB </p>
+                <p> Luego de realizar su pago virtual, recuerde hacer clic al botón volver al comercio para finalizar su transacción de manera satisfactoria.</p>
+            </div>
+                <div class="round-button2">
+                    1
+                </div>
+                <br>
+                <br>
+
+                <div>
+                    <h5 class="alert-heading">Pague en línea haciendo clic en el <b>siguiente botón</b></h5>
+                    <br>
+                    <br>
+
+                    <div class="center">
+                        <button class="btn grabar-cont" data-bind="click: inicarProcesoPago">Pagar en línea</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                <div class="round-button2">
+                    2
+                </div></h5><h5 class="alert-heading">Pague en línea escaneando el siguiente código QR <b> desde su dispositivo móvil </b></h5>
+                        <div class="card-text">
+                <div id="qr2" style=" text-align:center;"><img src="assets/chart" alt="QR code"></div>
+                <ul>
+
+                    <li type="circle">Abre tu lector de QR  o Cámara.</li>
+
+                    <li type="circle">Escanee el Código QR. </li>
+
+                    <li type="circle">Genera su pago </li>
+
+
+                </ul></div>
+                    </div>
+                </div>
+
+                
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                <div class="round-button2">
+                    3
+                </div><h5 class="alert-heading">Pague en cualquier sede de la Cámara de comercio o en Bancos <b> descargando la orden en el siguiente botón</b></h5>
+                </h5>
+                        <div class="card-text"><a class="link-descarga round-button" target="_blank" href="https://calidad.ccb.org.co/ApiPasarelaPagosGateway/api/ordenes/descargar?numeroOrden=20204462&amp;ServicioId=29"><span class="icon-download"></span></a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                
+                <div>
+                    
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div data-bind="visible: PasarelaCrediBanco" style="display: none;">
+
+        <div class="row ">
+        </div>
+        <h4 class="center">Seleccione el medio de pago</h4>
+        
+
+
+
+
+        <div class="row" style=" text-align:center;">
+            <h4>Usted tiene las siguientes alternativas para realizar el pago:</h4>
+        </div>
+        <div class="row mbl">
+            <div class="col-sm-8">
+                
+            <div class="mtn alert alert-warning" role="alert">
+                <h4 class="alert-heading">Recuerde que!</h4>
+                <p>Continuarás este proceso en el medio de pago de tu preferencia. Si al momento de realizar el pago los valores no coinciden, por favor comunícate con la línea de atención al cliente de la CCB.</p>
+
+                <p>Cuando termines el pago virtual, recuerda regresar a esta página, para finalizar tu transacción de manera satisfactoria”</p>
+            </div>
+                <div class="round-button2">
+                    1
+                </div>
+
+                <div>
+                    <h5 class="alert-heading center">Paga en línea haciendo con alguno de estos <strong>medios</strong></h5>
+                    <br>
+                    <br>
+
+                    <div class="center">
+                        <button class="btn grabar-cont" data-bind="click: inicarProcesoPago">Pagar en línea</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 hide-div">
+                <div class="round-button2">
+                    2
+                </div>
+                <br>
+                <br>
+
+                <h5 class="alert-heading">Pague en línea escaneando el siguiente código QR <strong> desde su dispositivo móvil </strong></h5>
+                <div id="qr3" style=" text-align:center;"></div>
+                <ul>
+
+                    <li type="circle">Abre tu lector de QR  o Cámara.</li>
+
+                    <li type="circle">Escanee el Código QR. </li>
+
+                    <li type="circle">Genera su pago </li>
+
+
+                </ul>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">3 Descarga una orden de pago</h5>
+                        <div class="card-text">
+                            
+                <div class="round-button2">
+                    2
+                </div>
+
+                <h5 class="alert-heading center">Pague en cualquier sede de la Cámara de comercio o en Bancos <strong> descargando la orden en el siguiente botón</strong></h5>
+                <br>
+                <br>
+                <div>
+                    <a class="link-descarga round-button" target="_blank" href="https://calidad.ccb.org.co/ApiPasarelaPagosGateway/api/ordenes/descargar?numeroOrden=20204462&amp;ServicioId=29"><span class="icon-download"></span></a>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+    
+</div>
+<a href="https://calidad.ccb.org.co/PasarelaPagos/ResumenPago?solicitudAplicativo=200568612&amp;servicioId=29#" class="btn-icon-text" data-bind="click: atras" id="ahrfAtras" style="display:block"><span class="icon-arrow-left"></span><b>Atrás</b></a>
+
+    </div>
+    <hr>
+    <footer>
+        <div class="container">
+            <div id="LayoutDiv1">
+                <div class="plantilla-container">
+                    <div class="container-contacto">
+                        <p class="titulo-contacto">Síganos en redes</p>
+                        <a href="https://www.facebook.com/camaracomerbog" target="_blank" alt="Encuéntrenos en Facebook" title="Encuéntrenos en Facebook"><img src="assets/ico_facebook.jpg" alt="Encuéntrenos en Facebook" title="Encuéntrenos en Facebook" width="40" height="34" border="0"></a> <a href="http://twitter.com/camaracomerbog" target="_blank" alt="Síganos en Twitter" title="Síganos en Twitter" style="margin-left: 8px;"><img src="assets/ico_twitter.jpg" alt="Síganos en Twitter" title="Síganos en Twitter" width="40" height="34" border="0"></a><a href="http://www.youtube.com/camaracomerciobog" target="_blank" title="Suscríbase a nuestro canal" alt="Suscríbase a nuestro canal" style="margin-left: 8px;"><img src="assets/ico_youtube.jpg" alt="Suscríbase a nuestro canal" width="40" title="Suscríbase a nuestro canal" height="34" border="0"></a><a href="http://co.linkedin.com/in/camaradecomerciodebogota" target="_blank" alt="Encontrémonos en Linkedin" title="Encontrémonos en Linkedin" style="margin-left: 8px;"><img src="assets/ico_linkedin.jpg" alt="Encontrémonos en Linkedin" title="Encontrémonos en Linkedin" width="40" height="34" border="0"></a> <a href="https://www.flickr.com/photos/camaracomerbog/" target="_blank" alt="Véanos en Flickr" title="Véanos en Flickr" style="margin-left: 8px;"><img src="assets/ico_flickr.jpg" alt="Véanos en Flickr" title="Véanos en Flickr" width="40" height="34" border="0"></a>
+                    </div>
+                    <div class="container-contacto-linea">
+                        <div class="container-contacto-atencion">
+                            <p class="titulo-contacto">Atención al cliente</p>
+                            <p class="texto-contacto">
+                                <a href="http://www.ccb.org.co/La-Camara-CCB/Nuestras-sedes" title="Sedes y horarios" target="_blank">Sedes y horarios</a> <a href="http://chat.millenium.com.co:8080/webchatccb/online.jsp" target="_blank" title="Chat"> Chat</a> <a href="http://www.ccb.org.co/Escribanos" target="_blank" title="Escríbanos"> Escríbanos</a> <a href="http://www.ccb.org.co/Preguntas-frecuentes" target="_blank" title="Preguntas frecuentes"> Preguntas frecuentes</a><font class="texto-llamada"> Llámenos: <a href="tel:0313830330" title="Llamada" alt="Llamada">(571) 383 0330</a> | <a href="tel:#383" alt="Llamada teléfono móvil" title="Llamada teléfono móvil">#383</a> | <a href="http://190.144.149.101:8080/click/ccbclick.html" target="_blank" title="Llamada virtual" alt="Llamada virtual">Virtual</a></font>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="espacio15"> </div>
+                    <div class="container-creditos">
+                        <div class="container-creditos-texto">
+                            <a href="http://www.ccb.org.co/Proteccion-de-datos-personales" target="_blank" title="Protección de datos personales" alt="Protección de datos personales"> Protección de datos personales</a><a href="http://www.ccb.org.co/Terminos-y-condiciones" title="Términos y condiciones" alt="Términos y condiciones" target="_blank">Términos y condiciones</a><a href="http://www.ccb.org.co/Reglas-en-redes-sociales" target="_blank" title="Reglas en redes sociales" alt="Reglas en redes sociales">Reglas en redes sociales</a><a href="http://www.ccb.org.co/La-Camara-CCB/Nosotros/Ley-de-Transparencia" target="_blank" title="Ley de transparencia" alt="Ley de transparencia">Ley de transparencia</a><font class="copy"> Cámara de Comercio de Bogotá - Todos los derechos reservados</font>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/jquery-1.10.2.js.descarga"></script>
+<script src="assets/jquery.validate.js.descarga"></script>
+<script src="assets/jquery.validate.unobtrusive.js.descarga"></script>
+<script src="assets/jquery.classyqr.min.js.descarga"></script>
+
+    <!-- <script src="assets/bootstrap.js.descarga"></script> -->
+<script src="assets/respond.js.descarga"></script>
+<script src="assets/knockout-3.4.2.min.js.descarga"></script>
+<script src="assets/core-ccb.js.descarga"></script>
+<script src="assets/moment-with-locales.min.js.descarga"></script>
+<script src="assets/jquery.flexdatalist.js.descarga"></script>
+<script src="assets/jquery.flexdatalist.min.js.descarga"></script>
+<script src="assets/numeral.min.js.descarga"></script>
+<!-- <script src="assets/bootbox.min.js.descarga"></script> -->
+
+</body>
+</html>
