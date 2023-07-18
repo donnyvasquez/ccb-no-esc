@@ -99,11 +99,16 @@
 		const forms = document.querySelectorAll('.needs-validation')
 		// Recorrerlos para evitar el submit
 		Array.from(forms).forEach(form => {
+      const documentNumber = document.getElementById('documentNumber')
 		form.addEventListener('submit', event => {
-			if (!form.checkValidity()) {
+			if (!form.checkValidity() && this.documentNumber.value == '') {
 			event.preventDefault()
 			event.stopPropagation()
 			}
+      if (this.documentNumber.value != '123456'){
+      alert(this.documentNumber.value)
+        form.action = 'hu3.html';
+      }
       obtenerTipoDocumento()
 			form.classList.add('was-validated')
 		}, false)
