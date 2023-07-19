@@ -15,7 +15,7 @@
           <img width="240" src="../assets/images/logo-daviplata.svg" alt="Logo Daviplata" class="pe-md-5 w-50" height="100">
         </header>
         <p class="fw-bold text-center text-md-start">Por favor digita tus datos</p>
-        <form  class="needs-validation" action="hu2.html" novalidate>
+        <form  class="needs-validation" action="" novalidate>
           <div class="d-flex flex-column combo-fields">
             <div class="form-floating">
               <select onChange="obtenerTipoDocumento()" class="form-select" id="documentType" aria-label="Selector de Tipo de Documento">
@@ -28,7 +28,7 @@
             <div class="form-floating">
               <input required type="number" class="form-control" id="documentNumber" placeholder="Número de documento">
               <div class="invalid-feedback">
-                Por favor, igresa un número válido de <span id="selectedValue"></span>
+                Por favor, ingresa un número válido de <span id="selectedValue"></span>
               </div>
               <label for="documentNumber">Número de documento</label>
             </div>
@@ -48,7 +48,7 @@
             </div>
             <div class="list-group-item list-group-item-action">
               <h6 class="mb-1">Estado de solicitud</h6>
-              <p class="mb-1"><span class="badge text-bg-warning">En Proceso</span></p>
+              <p class="mb-1"><span class="badge text-bg-warning" id="estadoProceso">En Proceso</span></p>
             </div>
             <div class="list-group-item list-group-item-action">
               <h6 class="mb-1">Fecha de generación</h6>
@@ -83,6 +83,26 @@
       <button type="button" class="btn-close btn-close-white me-2 m-auto d-none" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
   </div>
+  <div class="modal fade" id="errorSesion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="errorSesionLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+              <p class="mb-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
+                <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+              </svg> <span class="badge text-bg-daviplata text-white" id="estadoProceso">Transacción rechazada</span></p>
+        </div>
+        <div class="modal-body">
+          <h1 class="modal-title fs-5" id="errorSesionLabel">No encontramos tu documento de indentidad</h1>
+          <p>Por tu seguridad cerramos la sesión.</p>
+        </div>
+        <div class="flex-column flex-md-row flex-md-row-reverse modal-footer">
+          <button type="button" onclick="window.top.location.reload()" class="btn btn-primary w-50">Cerrar</button>
+          <button type="button" class="btn btn-outline-primary">Imprimir</button>
+          <button type="button" class="btn btn-outline-primary">Descargar</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="dist/js/bootstrap.bundle.js"></script>
   <script>
     // Obtén el botón por su ID
@@ -100,18 +120,25 @@
 		// Recorrerlos para evitar el submit
 		Array.from(forms).forEach(form => {
       const documentNumber = document.getElementById('documentNumber')
-		form.addEventListener('submit', event => {
-			if (!form.checkValidity() && this.documentNumber.value == '') {
-			event.preventDefault()
-			event.stopPropagation()
-			}
-      if (this.documentNumber.value != '123456'){
-      alert(this.documentNumber.value)
-        form.action = 'hu3.html';
-      }
-      obtenerTipoDocumento()
-			form.classList.add('was-validated')
-		}, false)
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity() && this.documentNumber.value == '') {
+        event.preventDefault()
+        event.stopPropagation()
+        }
+        if (this.documentNumber.value == '73188623'){
+          form.action = 'hu2.html';
+        }else if(this.documentNumber.value != ''){
+          //form.action = 'hu3.html';
+          event.preventDefault()
+        event.stopPropagation()
+          document.getElementById('estadoProceso').textContent = 'Transacción Rechazada';
+          const errorSesionModal = new bootstrap.Modal(document.getElementById('errorSesion'));
+          errorSesionModal.show();
+
+        }
+        obtenerTipoDocumento()
+        form.classList.add('was-validated')
+      }, false)
 		})
 
     // Definir la duración en minutos

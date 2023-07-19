@@ -11,30 +11,32 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 col-md-6 my-4">
-        <header class="text-center text-md-start">
+        <header class="text-center text-md-start mb-4">
           <img width="240" src="../assets/images/logo-daviplata.svg" alt="Logo Daviplata" class="pe-md-5 w-50" height="100">
         </header>
-        <h3 class="fw-bold text-center text-md-start h5">Por favor escribe el código enviado a tu celular</h3>
-        <form  class="needs-validation" action="email-aproved.html" novalidate>
+        <h3 class="fw-bold text-center text-md-start h5 mb-4">Por favor escribe el código enviado a tu celular</h3>
+        <form id="formCodigo" class="needs-validation" action="" novalidate>
           <div class="d-flex flex-column">
             <div class="input-group flex-nowrap">
               <img class="img input-group-text" src="../assets/ring-phone.png" height="58" />
               <div class="form-floating mb-4">
                 <input required type="text" pattern="[0-9]{6}" minlength="6" maxlength="6" class="form-control" id="codeNumber" placeholder="Código">
                 <div class="invalid-feedback">
-                  Por favor, igresa el código.
+                  Por favor, ingresa el código.
                 </div>
                 <label for="codeNumber">Código</label>
               </div>
             </div>
-            <p class="text-body-tertiary text-center text-md-start lh-1"><span class="d-none d-md-inline">Estimado cliente. </span>Si el mensaje de confirmación no llega, recibirás una llamada donde se te informará dicho código</p>
+            <p class="text-body-tertiary text-center text-md-start lh-1 mb-4"><span class="d-none d-md-inline">Estimado cliente. </span>Si el mensaje de confirmación no llega, recibirás una llamada donde se te informará dicho código</p>
           </div>
           <div class="d-flex flex-column gap-3">
             <button class="col btn btn-daviplata text-white" type="submit">Efectuar pago</button>
-            <div class="d-flex gap-3">
-              <button class="col btn btn-outline-daviplata" type="button">Generar nuevo código</button>
+              <div class="d-flex gap-3">
+              <button id="countdownPercent" onclick="resendSMS()" class="col btn btn-outline-daviplata disabled" type="button">Generar nuevo código</button>
               <button id="btnCancelar" name="Cancelar pago con Daviplata" class="col btn btn-outline-secondary" type="button" role="button">Cancelar</button>
             </div>
+            <p id="nuevoSMS" class="text-danger d-none">Un nuevo código fue enviado a tu celular.</p>
+            <p id="contdoaWrap">Podrás generar un nuevo código dentro de <span class="fw-bold text-daviplata" id="countdown">10 minutos</span>.</p>
           </div>
         </form>
       </div>
@@ -47,7 +49,7 @@
             </div>
             <div class="list-group-item list-group-item-action">
               <h6 class="mb-1">Estado de solicitud</h6>
-              <p class="mb-1"><span class="badge text-bg-warning">En Proceso</span></p>
+              <p class="mb-1"><span id="estadoProceso" class="badge text-bg-warning">En Proceso</span></p>
             </div>
             <div class="list-group-item list-group-item-action">
               <h6 class="mb-1">Fecha de generación</h6>
@@ -74,12 +76,28 @@
       </div>
     </div>
   </div>
-  <div class="toast sticky-bottom show fade align-items-center text-bg-dark border-0 w-auto mx-2 mt-3" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="d-flex">
-      <div class="toast-body">
-        Por favor no cierres esta ventana. En los próximos <span class="fw-bold text-daviplata">10 minutos</span> estaremos pendientes de tu pago.
+  <div class="modal fade" id="errorSesion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="errorSesionLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+              <p class="mb-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
+                <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+              </svg> <span class="badge text-bg-daviplata text-white">Transacción rechazada</span></p>
+        </div>
+        <div class="modal-body">
+          <p>Por tu seguridad cerramos la sesión.</p>
+          <ul class="list-group">
+            <li class="list-group-item"><strong>Error:</strong> Acá van todos los mensajes de error del sistema.</li>
+            <li class="list-group-item"><strong>CUS: </strong> 8764324237</li>
+            <li class="list-group-item"><strong>Dirección IP: </strong> 129.234.123.1</li>
+          </ul>
+        </div>
+        <div class="flex-column flex-md-row flex-md-row-reverse modal-footer">
+          <button type="button" onclick="window.top.location.reload()" class="btn btn-primary w-50">Finalizar</button>
+          <button type="button" class="btn btn-outline-primary">Imprimir</button>
+          <button type="button" class="btn btn-outline-primary">Descargar</button>
+        </div>
       </div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto d-none" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
   </div>
   <script src="dist/js/bootstrap.bundle.js"></script>
@@ -96,65 +114,95 @@
     
 		// Obtener todos los formularios que se quieren validar
 		const forms = document.querySelectorAll('.needs-validation')
+    const codeNumber = document.getElementById('codeNumber')
 		// Recorrerlos para evitar el submit
 		Array.from(forms).forEach(form => {
 		form.addEventListener('submit', event => {
-			if (!form.checkValidity()) {
+			if (!form.checkValidity() && this.codeNumber.value == '') {
 			event.preventDefault()
 			event.stopPropagation()
 			}
+      if (this.codeNumber.value == '957801'){
+          form.action = 'email-aproved.html';
+        }else if(this.codeNumber.value != ''){
+          event.preventDefault()
+        event.stopPropagation()
+          document.getElementById('estadoProceso').textContent = 'Transacción Rechazada';
+          const errorSesionModal = new bootstrap.Modal(document.getElementById('errorSesion'));
+          errorSesionModal.show();
+
+        }
 			form.classList.add('was-validated')
 		}, false)
 		})
 
     // Definir la duración en minutos
-    var duration = 10;
+    var duration = 1;
 
     // Calcular el tiempo de finalización
     var endTime = new Date();
     endTime.setMinutes(endTime.getMinutes() + duration);
-
     // Actualizar el contador cada segundo
+    var contdoaWrapElement = document.getElementById("contdoaWrap");
     var countdownElement = document.getElementById("countdown");
-    var countdownInterval = setInterval(updateCountdown, 1000);
+    var countdownPercentElement = document.getElementById("countdownPercent");
 
-    function updateCountdown() {
+    // Definimos el tiempo inicial en minutos
+    var tiempoInicial = duration;
+    var tiempoEnSegundos = tiempoInicial * 60;
+
+    // Función para actualizar el contador regresivo
+    function actualizarContador() {
       // Obtener la fecha y hora actual
       var currentTime = new Date();
-
-      // Calcular la diferencia entre la hora actual y la hora de finalización
       var timeDifference = endTime - currentTime;
+      // Calculamos el progreso en porcentaje
+      var porcentaje = (tiempoEnSegundos / (tiempoInicial * 60)) * 100;
 
-      // Verificar si el contador ha llegado a cero
-      if (timeDifference <= 0) {
-        clearInterval(countdownInterval);
-        countdownElement.textContent = "¡Tiempo terminado!";
-        return;
-      }
+      // Redondeamos el porcentaje
+      porcentaje = porcentaje.toFixed(2);
+      let position = porcentaje;
 
+      // Imprimimos el porcentaje
+      countdownPercentElement.style.background = `linear-gradient(90deg, rgba(200,200,200,1) ${position}%, rgba(255,255,255,1) ${position}%, rgba(255,255,255,1) ${position}%, rgba(255,255,255,1) 100%)`;
+
+      // Restamos un segundo al tiempo
+      tiempoEnSegundos--;
       // Calcular los minutos y segundos restantes
       var minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
       var seconds = Math.floor((timeDifference / 1000) % 60);
-
       // Mostrar el contador actualizado en el elemento HTML
       countdownElement.textContent = minutes + " minutos " + seconds + " segundos";
+
+      // Verificamos si el tiempo ha llegado a cero
+      if (tiempoEnSegundos <= 0) {
+        countdownPercentElement.style="";
+        countdownPercentElement.classList.remove("disabled");
+        contdoaWrapElement.style.display="none";
+        return;
+
+      }
+
+      // Llamamos a la función nuevamente después de un segundo
+      setTimeout(actualizarContador, 1000);
     }
-    selectElement.addEventListener("change", function() {
-      this.obtenerTipoDocumento()
-    })
-    function obtenerTipoDocumento(){
-      // Actualizar el mensaje de error del numero de documento con el tipo de documento seleccionado
-      // Obtener el elemento select
-      var selectElement = document.getElementById("documentType");
 
-      // Obtener el elemento para mostrar el valor seleccionado
-      var selectedValueElement = document.getElementById("selectedValue");
+    // Iniciamos el contador
+    actualizarContador();
 
-      // Obtener el texto de la opción seleccionada
-      var selectedOption = selectElement.options[selectElement.selectedIndex].text;
-
-      // Mostrar el valor seleccionado en el elemento
-      selectedValueElement.textContent = selectedOption;
+    // Reenvío de SMS
+    function resendSMS(){
+      const formCodigo = document.getElementById("formCodigo");
+      const nuevoSMS = document.getElementById("nuevoSMS");
+      formCodigo.reset();
+      duration= 3;
+      tiempoInicial = duration;
+      tiempoEnSegundos = tiempoInicial * 60;
+      nuevoSMS.classList.remove('d-none');
+      countdownPercentElement.classList.add("disabled");
+      contdoaWrapElement.style.display="block";
+      actualizarContador();
+      
     }
   </script>
 </body>

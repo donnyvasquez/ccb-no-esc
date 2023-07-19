@@ -97,6 +97,13 @@ $theme-colors: (
   "daviplata":  $daviplata,
   "nequi":      $nequi,
 );
+
+#countdownPercent{
+  transition:all 0.3s ease-in-out;
+}
+.modal{
+  backdrop-filter: blur(5px);
+}
 .combo-fields{
   margin-bottom: 2rem;
   .form-floating:first-child{
