@@ -14,7 +14,7 @@
         <header class="text-center text-md-start mb-4">
           <img width="240" src="../assets/images/logo-daviplata.svg" alt="Logo Daviplata" class="pe-md-5 w-50" height="100">
         </header>
-        <h3 class="fw-bold text-center text-md-start h5 mb-4">Por favor escribe el código enviado a tu celular</h3>
+        <h3 id="tituloIngresarCodigo" class="fw-bold text-center text-md-start h5 mb-4">Por favor escribe el código enviado a tu celular</h3>
         <form id="formCodigo" class="needs-validation" action="" novalidate>
           <div class="d-flex flex-column">
             <div class="input-group flex-nowrap">
@@ -219,8 +219,10 @@
     }
     function aproveTransaction(){
       const aprovedTransaction = document.getElementById("aprovedTransaction");
+      var tituloIngresarCodigo = document.getElementById("tituloIngresarCodigo");
       aprovedTransaction.classList.remove('d-none');
       formCodigo.classList.add('d-none');
+      tituloIngresarCodigo.classList.add('d-none');
       document.getElementById('estadoProceso').textContent = 'Transacción Aprobada';
     }
   </script>
