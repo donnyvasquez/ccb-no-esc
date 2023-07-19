@@ -39,6 +39,18 @@
             <p id="contdoaWrap">Podrás generar un nuevo código dentro de <span class="fw-bold text-daviplata" id="countdown">10 minutos</span>.</p>
           </div>
         </form>
+        <div id="aprovedTransaction" class="d-none">
+        <ul class="list-group mb-4">
+          <li class="list-group-item"><strong>Estado:</strong> <span class="badge bg-warning fs-6 text-bg-info text-white">Transaccion aprovada</span></li>
+          <li class="list-group-item"><strong>CUS: </strong> 8764324237</li>
+          <li class="list-group-item"><strong>Dirección IP: </strong> 129.234.123.1</li>
+        </ul>
+        <div class="d-flex flex-column flex-md-row flex-md-row-reverse gap-2">
+          <button type="button" onclick="window.top.location.reload()" class="btn btn-primary">Finalizar</button>
+          <button type="button" class="btn btn-outline-primary">Imprimir</button>
+          <button type="button" class="btn btn-outline-primary">Descargar</button>
+        </div>
+        </div>
       </div>
       <div class="col-12 col-md-6 my-4">
         <div class="resumen-pago orden-compra">
@@ -123,7 +135,9 @@
 			event.stopPropagation()
 			}
       if (this.codeNumber.value == '957801'){
-          form.action = 'email-aproved.html';
+			event.preventDefault()
+			event.stopPropagation()
+        aproveTransaction()
         }else if(this.codeNumber.value != ''){
           event.preventDefault()
         event.stopPropagation()
@@ -192,7 +206,7 @@
 
     // Reenvío de SMS
     function resendSMS(){
-      const formCodigo = document.getElementById("formCodigo");
+      var formCodigo = document.getElementById("formCodigo");
       const nuevoSMS = document.getElementById("nuevoSMS");
       formCodigo.reset();
       duration= 3;
@@ -202,7 +216,12 @@
       countdownPercentElement.classList.add("disabled");
       contdoaWrapElement.style.display="block";
       actualizarContador();
-      
+    }
+    function aproveTransaction(){
+      const aprovedTransaction = document.getElementById("aprovedTransaction");
+      aprovedTransaction.classList.remove('d-none');
+      formCodigo.classList.add('d-none');
+      document.getElementById('estadoProceso').textContent = 'Transacción Aprobada';
     }
   </script>
 </body>
