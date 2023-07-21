@@ -181,10 +181,16 @@
       countdownPercentElement.style.background = `linear-gradient(90deg, rgba(200,200,200,1) ${position}%, rgba(255,255,255,1) ${position}%, rgba(255,255,255,1) ${position}%, rgba(255,255,255,1) 100%)`;
 
       // Restamos un segundo al tiempo
+      if (tiempoEnSegundos >0){
       tiempoEnSegundos--;
+      }else{
+        tiempoEnSegundos=tiempoInicial*60
+      }
       // Calcular los minutos y segundos restantes
-      var minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
-      var seconds = Math.floor((timeDifference / 1000) % 60);
+      var minutes = 0;
+      var seconds = 0;
+      minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
+      seconds = Math.floor((timeDifference / 1000) % 60);
       // Mostrar el contador actualizado en el elemento HTML
       countdownElement.textContent = minutes + " minutos " + seconds + " segundos";
 
@@ -193,10 +199,12 @@
         countdownPercentElement.style="";
         countdownPercentElement.classList.remove("disabled");
         contdoaWrapElement.style.display="none";
+        endTime=new Date();
+        endTime.setMinutes(endTime.getMinutes() + duration);
         return;
 
       }
-
+console.log('currentTime: '+currentTime, 'endTime: '+endTime, 'minutos: '+minutes,'segundos: '+ seconds, timeDifference, tiempoInicial);
       // Llamamos a la función nuevamente después de un segundo
       setTimeout(actualizarContador, 1000);
     }
@@ -206,10 +214,12 @@
 
     // Reenvío de SMS
     function resendSMS(){
+      duration= 1;
+      var endTime = new Date();
+      endTime.setMinutes(endTime.getMinutes() + duration);
       var formCodigo = document.getElementById("formCodigo");
       const nuevoSMS = document.getElementById("nuevoSMS");
       formCodigo.reset();
-      duration= 3;
       tiempoInicial = duration;
       tiempoEnSegundos = tiempoInicial * 60;
       nuevoSMS.classList.remove('d-none');
