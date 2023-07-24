@@ -28,11 +28,11 @@
 
 jQuery(document).ready(function(){
 	console.log('Activando el colorbox');
-	jQuery(".iframe").colorbox({iframe:true, width:"960px",maxWidth:"90%", height:"70%", overlayClose:false, onComplete: function() {
+	jQuery(".iframe").colorbox({iframe:true, width:"960px",maxWidth:"90%", height:"80%", overlayClose:false, onComplete: function() {
 		$(window).on("resize", function() {
 		  $.colorbox.resize({
 			width: $(window).width() > 960 ? "960px" : "90%",
-			height: $(window).height() > 600 ? "600px" : "90%"
+			height: $(window).height() > 720 ? "680px" : "90%"
 		  });
 		});
 	}});

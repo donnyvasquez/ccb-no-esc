@@ -20,8 +20,8 @@
             <div class="form-floating">
               <select onChange="obtenerTipoDocumento()" class="form-select" id="documentType" aria-label="Selector de Tipo de Documento">
                 <option value="CC" selected>Cédula de Ciudadanía</option>
-                <option value="CE">Cedula de Extranjería</option>
-                <option value="TI">Tarjeta de Indentidad</option>
+                <option value="CE">Cédula de Extranjería</option>
+                <option value="TI">Tarjeta de Identidad</option>
               </select>
               <label for="documentType">Tipo de documento</label>
             </div>
@@ -92,7 +92,7 @@
               </svg> <span class="badge text-bg-daviplata text-white" id="estadoProceso">Transacción rechazada</span></p>
         </div>
         <div class="modal-body">
-          <h1 class="modal-title fs-5" id="errorSesionLabel">No encontramos tu documento de indentidad</h1>
+          <h1 class="modal-title fs-5" id="errorSesionLabel">No encontramos tu documento de identidad</h1>
           <p>Por tu seguridad cerramos la sesión.</p>
         </div>
         <div class="flex-column flex-md-row flex-md-row-reverse modal-footer">
@@ -171,11 +171,11 @@
       var seconds = Math.floor((timeDifference / 1000) % 60);
 
       // Mostrar el contador actualizado en el elemento HTML
-      countdownElement.textContent = minutes + " minutos " + seconds + " segundos";
+      //countdownElement.textContent = minutes + " minutos " + seconds + " segundos";
     }
-    selectElement.addEventListener("change", function() {
-      this.obtenerTipoDocumento()
-    })
+    // selectElement.addEventListener("change", function() {
+    //   this.obtenerTipoDocumento()
+    // })
     function obtenerTipoDocumento(){
       // Actualizar el mensaje de error del numero de documento con el tipo de documento seleccionado
       // Obtener el elemento select

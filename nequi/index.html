@@ -3,52 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pagar con Daviplata HU2</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Pagar con Nequi</title>
+  <link rel="stylesheet" href="../daviplata/style.css">
 </head>
-<body>
+<body class="back-nequi">
 
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 col-md-6 my-4">
         <header class="text-center text-md-start mb-4">
-          <img width="240" src="../assets/images/logo-daviplata.svg" alt="Logo Daviplata" class="pe-md-5 w-50" height="100">
+          <img width="240" src="../assets/images/logo-nequi.svg" alt="Logo Nequi" class="pe-md-5 w-50" height="100">
         </header>
-        <h3 id="tituloIngresarCodigo" class="fw-bold text-center text-md-start h5 mb-4">Por favor escribe el código enviado a tu celular</h3>
+        <h3 id="tituloIngresarCodigo" class="fw-bold text-center text-md-start h5 mb-4">Ingresa tu número de Nequi</h3>
         <form id="formCodigo" class="needs-validation" action="" novalidate>
           <div class="d-flex flex-column">
             <div class="input-group flex-nowrap">
-              <img class="img input-group-text" src="../assets/ring-phone.png" height="58" />
+              <img class="img input-group-text rounded-start-5" src="../assets/ring-phone.png" height="58" />
               <div class="form-floating mb-4">
-                <input required type="text" pattern="[0-9]{6}" minlength="6" maxlength="6" class="form-control" id="codeNumber" placeholder="Código">
+                <input required type="text" pattern="[0-9]{10}" minlength="10" maxlength="10" class="form-control rounded-end-5" id="phoneNumber" placeholder="Teléfono">
                 <div class="invalid-feedback">
-                  Por favor, ingresa el código.
+                  Por favor, ingresa el número de teléfono.
                 </div>
-                <label for="codeNumber">Código</label>
+                <label for="phoneNumber">Teléfono</label>
               </div>
             </div>
             <p class="text-body-tertiary text-center text-md-start lh-1 mb-4"><span class="d-none d-md-inline">Estimado cliente. </span>Si el mensaje de confirmación no llega, recibirás una llamada donde se te informará dicho código</p>
           </div>
           <div class="d-flex flex-column gap-3">
-            <button class="col btn btn-daviplata text-white" type="submit">Efectuar pago</button>
-              <div class="d-flex gap-3">
-              <button id="countdownPercent" onclick="resendSMS()" class="col btn btn-outline-daviplata disabled" type="button">Generar nuevo código</button>
-              <button id="btnCancelar" name="Cancelar pago con Daviplata" class="col btn btn-outline-secondary" type="button" role="button">Cancelar</button>
+            <button class="col btn btn-nequi rounded-5 text-white" type="submit">Efectuar pago</button>
+              <div class="d-flex gap-3 d-none">
+              <button id="countdownPercent" onclick="resendSMS()" class="col btn btn-outline-nequi rounded-5 disabled" type="button">Generar nuevo código</button>
+              <button id="btnCancelar" name="Cancelar pago con Nequi" class="col btn btn-outline-secondary rounded-5" type="button" role="button">Cancelar</button>
             </div>
             <p id="nuevoSMS" class="text-danger d-none">Un nuevo código fue enviado a tu celular.</p>
-            <p id="contdoaWrap">Podrás generar un nuevo código dentro de <span class="fw-bold text-daviplata" id="countdown">10 minutos</span>.</p>
+            <p id="contdoaWrap" class="d-none">Podrás generar un nuevo código dentro de <span class="fw-bold text-nequi" id="countdown">10 minutos</span>.</p>
           </div>
         </form>
         <div id="aprovedTransaction" class="d-none">
         <ul class="list-group mb-4">
-          <li class="list-group-item"><strong>Estado:</strong> <span class="badge bg-warning fs-6 text-bg-info text-white">Transaccion aprobada</span></li>
+          <li class="list-group-item"><strong>Estado:</strong> <span class="badge bg-nequi fs-6">Transaccion aprobada</span></li>
           <li class="list-group-item"><strong>CUS: </strong> 8764324237</li>
           <li class="list-group-item"><strong>Dirección IP: </strong> 129.234.123.1</li>
         </ul>
         <div class="d-flex flex-column flex-md-row flex-md-row-reverse gap-2">
-          <button type="button" onclick="window.top.location.reload()" class="btn btn-primary">Finalizar</button>
-          <button type="button" class="btn btn-outline-primary">Imprimir</button>
-          <button type="button" class="btn btn-outline-primary">Descargar</button>
+          <button type="button" onclick="enviarMensajeRecarga()" class="btn btn-nequi text-white rounded-5 w-100">Finalizar</button>
+          <button type="button" class="btn btn-outline-nequi-dark rounded-5">Imprimir</button>
+          <button type="button" class="btn btn-outline-nequi-dark rounded-5">Descargar</button>
         </div>
         </div>
       </div>
@@ -88,6 +88,7 @@
       </div>
     </div>
   </div>
+
   <div class="modal fade" id="errorSesion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="errorSesionLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -97,22 +98,21 @@
               </svg> <span class="badge text-bg-daviplata text-white">Transacción rechazada</span></p>
         </div>
         <div class="modal-body">
-          <p>Por tu seguridad cerramos la sesión.</p>
           <ul class="list-group">
-            <li class="list-group-item"><strong>Motivo:</strong> Acá van todos los mensajes de error del sistema.</li>
+            <li class="list-group-item"><strong>Motivo:</strong> No conocemos ese número en Nequi. Intenta de nuevo.</li>
             <li class="list-group-item"><strong>CUS: </strong> 8764324237</li>
             <li class="list-group-item"><strong>Dirección IP: </strong> 129.234.123.1</li>
           </ul>
         </div>
         <div class="flex-column flex-md-row flex-md-row-reverse modal-footer">
-          <button type="button" onclick="window.top.location.reload()" class="btn btn-primary w-50">Finalizar</button>
+          <button type="button" data-bs-dismiss="modal" class="btn btn-primary w-50">Finalizar</button>
           <button type="button" class="btn btn-outline-primary">Imprimir</button>
           <button type="button" class="btn btn-outline-primary">Descargar</button>
         </div>
       </div>
     </div>
   </div>
-  <script src="dist/js/bootstrap.bundle.js"></script>
+  <script src="../daviplata/dist/js/bootstrap.bundle.js"></script>
   <script>
     // Obtén el botón por su ID
     var btnCancelar = document.getElementById('btnCancelar');
@@ -122,111 +122,38 @@
       // Recarga la página
       window.top.location.reload();
     });
-
     
 		// Obtener todos los formularios que se quieren validar
 		const forms = document.querySelectorAll('.needs-validation')
-    const codeNumber = document.getElementById('codeNumber')
+    const phoneNumber = document.getElementById('phoneNumber')
+    
+    phoneNumber.addEventListener("input", () => {
+    const inputValue = phoneNumber.value;
+    const cleanValue = inputValue.replace(/\D/g, "");
+    phoneNumber.value = cleanValue;
+    })
 		// Recorrerlos para evitar el submit
 		Array.from(forms).forEach(form => {
 		form.addEventListener('submit', event => {
-			if (!form.checkValidity() && this.codeNumber.value == '') {
+			if (!form.checkValidity()) {
 			event.preventDefault()
 			event.stopPropagation()
 			}
-      if (this.codeNumber.value == '957801'){
+      if (this.phoneNumber.value == '3158398204'){
 			event.preventDefault()
 			event.stopPropagation()
         aproveTransaction()
-        }else if(this.codeNumber.value != ''){
-          event.preventDefault()
-        event.stopPropagation()
-          document.getElementById('estadoProceso').textContent = 'Transacción Rechazada';
-          const errorSesionModal = new bootstrap.Modal(document.getElementById('errorSesion'));
-          errorSesionModal.show();
-
+        }else if(this.phoneNumber.value != '3158398204' && this.phoneNumber.value != ''){
+			event.preventDefault()
+			event.stopPropagation()
+        const errorSesionModal = new bootstrap.Modal(document.getElementById('errorSesion'));
+        errorSesionModal.show();
+          
         }
 			form.classList.add('was-validated')
 		}, false)
 		})
 
-    // Definir la duración en minutos
-    var duration = 1;
-
-    // Calcular el tiempo de finalización
-    var endTime = new Date();
-    endTime.setMinutes(endTime.getMinutes() + duration);
-    // Actualizar el contador cada segundo
-    var contdoaWrapElement = document.getElementById("contdoaWrap");
-    var countdownElement = document.getElementById("countdown");
-    var countdownPercentElement = document.getElementById("countdownPercent");
-
-    // Definimos el tiempo inicial en minutos
-    var tiempoInicial = duration;
-    var tiempoEnSegundos = tiempoInicial * 60;
-
-    // Función para actualizar el contador regresivo
-    function actualizarContador() {
-      // Obtener la fecha y hora actual
-      var currentTime = new Date();
-      var timeDifference = endTime - currentTime;
-      // Calculamos el progreso en porcentaje
-      var porcentaje = (tiempoEnSegundos / (tiempoInicial * 60)) * 100;
-
-      // Redondeamos el porcentaje
-      porcentaje = porcentaje.toFixed(2);
-      let position = porcentaje;
-
-      // Imprimimos el porcentaje
-      countdownPercentElement.style.background = `linear-gradient(90deg, rgba(200,200,200,1) ${position}%, rgba(255,255,255,1) ${position}%, rgba(255,255,255,1) ${position}%, rgba(255,255,255,1) 100%)`;
-
-      // Restamos un segundo al tiempo
-      if (tiempoEnSegundos >0){
-      tiempoEnSegundos--;
-      }else{
-        tiempoEnSegundos=tiempoInicial*60
-      }
-      // Calcular los minutos y segundos restantes
-      var minutes = 0;
-      var seconds = 0;
-      minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
-      seconds = Math.floor((timeDifference / 1000) % 60);
-      // Mostrar el contador actualizado en el elemento HTML
-      countdownElement.textContent = minutes + " minutos " + seconds + " segundos";
-
-      // Verificamos si el tiempo ha llegado a cero
-      if (tiempoEnSegundos <= 0) {
-        countdownPercentElement.style="";
-        countdownPercentElement.classList.remove("disabled");
-        contdoaWrapElement.style.display="none";
-        endTime=new Date();
-        endTime.setMinutes(endTime.getMinutes() + duration);
-        return;
-
-      }
-console.log('currentTime: '+currentTime, 'endTime: '+endTime, 'minutos: '+minutes,'segundos: '+ seconds, timeDifference, tiempoInicial);
-      // Llamamos a la función nuevamente después de un segundo
-      setTimeout(actualizarContador, 1000);
-    }
-
-    // Iniciamos el contador
-    actualizarContador();
-
-    // Reenvío de SMS
-    function resendSMS(){
-      duration= 1;
-      var endTime = new Date();
-      endTime.setMinutes(endTime.getMinutes() + duration);
-      var formCodigo = document.getElementById("formCodigo");
-      const nuevoSMS = document.getElementById("nuevoSMS");
-      formCodigo.reset();
-      tiempoInicial = duration;
-      tiempoEnSegundos = tiempoInicial * 60;
-      nuevoSMS.classList.remove('d-none');
-      countdownPercentElement.classList.add("disabled");
-      contdoaWrapElement.style.display="block";
-      actualizarContador();
-    }
     function aproveTransaction(){
       const aprovedTransaction = document.getElementById("aprovedTransaction");
       var tituloIngresarCodigo = document.getElementById("tituloIngresarCodigo");
@@ -236,5 +163,19 @@ console.log('currentTime: '+currentTime, 'endTime: '+endTime, 'minutos: '+minute
       document.getElementById('estadoProceso').textContent = 'Transacción Aprobada';
     }
   </script>
+  <!-- Contenido de la página secundaria (dentro del iframe) -->
+
+<script>
+  // Función para enviar un mensaje a la ventana principal
+  function enviarMensajeRecarga() {
+    window.parent.jQuery.colorbox.close(); return false;
+    // Comprobar si la función postMessage está disponible en el navegador
+    if (window.parent && window.parent.postMessage) {
+      // Enviar un mensaje a la ventana principal solicitando la recarga
+      window.parent.postMessage("recargar", "*");
+    }
+  }
+</script>
+
 </body>
 </html>
