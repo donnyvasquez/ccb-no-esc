@@ -30,7 +30,7 @@
             <p class="text-body-tertiary text-center text-md-start lh-1 mb-4"><span class="d-none d-md-inline">Estimado cliente. </span>Si el mensaje de confirmación no llega, recibirás una llamada donde se te informará dicho código</p>
           </div>
           <div class="d-flex flex-column gap-3">
-            <button class="col btn btn-nequi rounded-5 text-white" type="submit">Efectuar pago</button>
+            <button id="submitPago" class="col btn btn-nequi rounded-5 text-white" type="submit" disabled>Efectuar pago</button>
               <div class="d-flex gap-3 d-none">
               <button id="countdownPercent" onclick="resendSMS()" class="col btn btn-outline-nequi rounded-5 disabled" type="button">Generar nuevo código</button>
               <button id="btnCancelar" name="Cancelar pago con Nequi" class="col btn btn-outline-secondary rounded-5" type="button" role="button">Cancelar</button>
@@ -105,7 +105,7 @@
           </ul>
         </div>
         <div class="flex-column flex-md-row flex-md-row-reverse modal-footer">
-          <button type="button" data-bs-dismiss="modal" class="btn btn-primary w-50">Finalizar</button>
+          <button type="button" data-bs-dismiss="modal" class="btn btn-primary w-50">Cerrar</button>
           <button type="button" class="btn btn-outline-primary">Imprimir</button>
           <button type="button" class="btn btn-outline-primary">Descargar</button>
         </div>
@@ -126,11 +126,13 @@
 		// Obtener todos los formularios que se quieren validar
 		const forms = document.querySelectorAll('.needs-validation')
     const phoneNumber = document.getElementById('phoneNumber')
-    
+    const submitPago = document.getElementById('submitPago')
     phoneNumber.addEventListener("input", () => {
+    console.log(phoneNumber.value.length);
     const inputValue = phoneNumber.value;
     const cleanValue = inputValue.replace(/\D/g, "");
     phoneNumber.value = cleanValue;
+    submitPago.disabled = (cleanValue.length < 10)
     })
 		// Recorrerlos para evitar el submit
 		Array.from(forms).forEach(form => {

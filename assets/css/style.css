@@ -9789,7 +9789,8 @@ Example showing how to change the color/size of the icons:
 
 .payment-separator span {
   position: absolute;
-  top: -13px;
+  top: -10px;
+  font-size: 13px;
   background: white;
   padding: 0 0.5rem;
   left: 50%;
