@@ -20,21 +20,23 @@
             <div class="input-group flex-nowrap">
               <img class="img input-group-text rounded-start-5" src="../assets/ring-phone.png" height="58" />
               <div class="form-floating mb-4">
-                <input required type="text" pattern="[0-9]{10}" minlength="10" maxlength="10" class="form-control rounded-end-5" id="phoneNumber" placeholder="Teléfono">
+                <input required type="text" inputmode="numeric" pattern="[0-9]{10}" minlength="10" maxlength="10" class="form-control rounded-end-5" id="phoneNumber" placeholder="Teléfono">
                 <div class="invalid-feedback">
                   Por favor, ingresa el número de teléfono.
                 </div>
                 <label for="phoneNumber">Teléfono</label>
               </div>
             </div>
-            <p class="text-body-tertiary text-center text-md-start lh-1 mb-4"><span class="d-none d-md-inline">Estimado cliente. </span>Si el mensaje de confirmación no llega, recibirás una llamada donde se te informará dicho código</p>
+            
           </div>
+        <div id="sendNequiCode" class="text-center">
+        </div>
           <div class="d-flex flex-column gap-3">
             <button id="submitPago" class="col btn btn-nequi rounded-5 text-white" type="submit" disabled>Efectuar pago</button>
               <div class="d-flex gap-3 d-none">
-              <button id="countdownPercent" onclick="resendSMS()" class="col btn btn-outline-nequi rounded-5 disabled" type="button">Generar nuevo código</button>
-              <button id="btnCancelar" name="Cancelar pago con Nequi" class="col btn btn-outline-secondary rounded-5" type="button" role="button">Cancelar</button>
-            </div>
+                <button id="countdownPercent" onclick="resendSMS()" class="col btn btn-outline-nequi rounded-5 disabled" type="button">Generar nuevo código</button>
+              </div>
+            <button id="btnCancelar" name="Cancelar pago con Nequi" class="col btn btn-link rounded-5" type="button" role="button">Cancelar</button>
             <p id="nuevoSMS" class="text-danger d-none">Un nuevo código fue enviado a tu celular.</p>
             <p id="contdoaWrap" class="d-none">Podrás generar un nuevo código dentro de <span class="fw-bold text-nequi" id="countdown">10 minutos</span>.</p>
           </div>
@@ -51,6 +53,7 @@
           <button type="button" class="btn btn-outline-nequi-dark rounded-5">Descargar</button>
         </div>
         </div>
+
       </div>
       <div class="col-12 col-md-6 my-4">
         <div class="resumen-pago orden-compra">
@@ -88,6 +91,30 @@
       </div>
     </div>
   </div>
+          
+  <!-- Modal -->
+  <div class="modal fade" id="sendNequiCodeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title d-flex gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+            <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+          </svg> Enviamos una notificación a tu celular con la información de la transacción 📲</h5>
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+        </div>
+        <div class="modal-body">
+          <p class="badge bg-nequi mb-3" id="countdownSeconds"></p>
+          <p>Si no la recibiste, <span class="text-nequi fw-bold">ingresa a la App Nequi en tu celular</span> para terminar tu proceso de pago. 👈🏻 </p>
+          <p>Te sugerimos activar las notificaciones de la App Nequi en tu celular para próximos pagos 😊 </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" onclick="aproveTransaction();" class="btn btn-outline-nequi-dark rounded-5 w-25" data-bs-dismiss="modal">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="modal fade" id="errorSesion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="errorSesionLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -99,13 +126,13 @@
         </div>
         <div class="modal-body">
           <ul class="list-group">
-            <li class="list-group-item"><strong>Motivo:</strong> No conocemos ese número en Nequi. Intenta de nuevo.</li>
+            <li class="list-group-item"><strong>Motivo:</strong> <span id="motivoMessage">No conocemos ese número en Nequi. Intenta de nuevo.</span></li>
             <li class="list-group-item"><strong>CUS: </strong> 8764324237</li>
             <li class="list-group-item"><strong>Dirección IP: </strong> 129.234.123.1</li>
           </ul>
         </div>
         <div class="flex-column flex-md-row flex-md-row-reverse modal-footer">
-          <button type="button" data-bs-dismiss="modal" class="btn btn-primary w-50">Cerrar</button>
+          <button onclick="window.parent.jQuery.colorbox.close()" type="button" data-bs-dismiss="modal" class="btn btn-primary w-50">Cerrar</button>
           <button type="button" class="btn btn-outline-primary">Imprimir</button>
           <button type="button" class="btn btn-outline-primary">Descargar</button>
         </div>
@@ -115,18 +142,23 @@
   <script src="../daviplata/dist/js/bootstrap.bundle.js"></script>
   <script>
     // Obtén el botón por su ID
-    var btnCancelar = document.getElementById('btnCancelar');
+    const btnCancelar = document.getElementById('btnCancelar');
     
     // Agrega el evento de clic al botón
     btnCancelar.addEventListener('click', function() {
       // Recarga la página
-      window.top.location.reload();
+      window.parent.jQuery.colorbox.close();
     });
     
 		// Obtener todos los formularios que se quieren validar
-		const forms = document.querySelectorAll('.needs-validation')
-    const phoneNumber = document.getElementById('phoneNumber')
-    const submitPago = document.getElementById('submitPago')
+		const forms = document.querySelectorAll('.needs-validation');
+    const phoneNumber = document.getElementById('phoneNumber');
+    const submitPago = document.getElementById('submitPago');
+    const sendNequiCodeModal = new bootstrap.Modal(document.getElementById('sendNequiCodeModal'));
+    const motivoMessage = document.getElementById('motivoMessage');
+    const errorSesionModal = new bootstrap.Modal(document.getElementById('errorSesion'));
+    const estadoProceso = document.getElementById('estadoProceso')
+    
     phoneNumber.addEventListener("input", () => {
     console.log(phoneNumber.value.length);
     const inputValue = phoneNumber.value;
@@ -142,13 +174,23 @@
 			event.stopPropagation()
 			}
       if (this.phoneNumber.value == '3158398204'){
-			event.preventDefault()
-			event.stopPropagation()
-        aproveTransaction()
-        }else if(this.phoneNumber.value != '3158398204' && this.phoneNumber.value != ''){
-			event.preventDefault()
-			event.stopPropagation()
-        const errorSesionModal = new bootstrap.Modal(document.getElementById('errorSesion'));
+        event.preventDefault()
+        event.stopPropagation()
+        sendNequiCodeModal.show();
+        startCountdown();
+        // aproveTransaction()
+        }else if (this.phoneNumber.value == '3158398205'){
+        event.preventDefault()
+        event.stopPropagation()
+        motivoMessage.textContent="Se agotó el tiempo de espera";
+        errorSesionModal.show();
+        estadoProceso.textContent = 'Rechazada';
+        }
+        else if(this.phoneNumber.value != '3158398204' && this.phoneNumber.value != ''){
+        event.preventDefault();
+        event.stopPropagation();
+        estadoProceso.textContent = 'Rechazada';
+        motivoMessage.textContent="Por favor revisa los datos que ingresaste. Tu compra no se ha finalizado debido a un problema en la autorización del pago"
         errorSesionModal.show();
           
         }
@@ -162,7 +204,28 @@
       aprovedTransaction.classList.remove('d-none');
       formCodigo.classList.add('d-none');
       tituloIngresarCodigo.classList.add('d-none');
-      document.getElementById('estadoProceso').textContent = 'Transacción Aprobada';
+      estadoProceso.textContent = 'Transacción Aprobada';
+    }
+    function startCountdown() {
+      var seconds = 30;
+      var countdownElement = document.getElementById('countdownSeconds');
+
+      var countdownInterval = setInterval(function() {
+        seconds--;
+        countdownElement.textContent = 'Te quedan '+seconds+' segundos';
+
+        if (seconds <= 0) {
+            clearInterval(countdownInterval);
+            countdownElement.textContent = "Tiempo agotado";
+            motivoMessage.textContent="Se agotó el tiempo de espera";
+            estadoProceso.textContent = 'Se agotó el tiempo de espera';
+            btnCancelar.classList.add('btn-nequi','text-white')
+            btnCancelar.classList.remove("btn-link")
+            submitPago.classList.add('d-none')
+            //aproveTransaction(); // Ejecutar el método al terminar el tiempo
+            sendNequiCodeModal.hide();
+        }
+      }, 1000); // Intervalo de 1 segundo
     }
   </script>
   <!-- Contenido de la página secundaria (dentro del iframe) -->
