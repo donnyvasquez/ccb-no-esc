@@ -158,7 +158,7 @@
     const motivoMessage = document.getElementById('motivoMessage');
     const errorSesionModal = new bootstrap.Modal(document.getElementById('errorSesion'));
     const estadoProceso = document.getElementById('estadoProceso')
-    
+    var countdownInterval;
     phoneNumber.addEventListener("input", () => {
     console.log(phoneNumber.value.length);
     const inputValue = phoneNumber.value;
@@ -199,6 +199,7 @@
 		})
 
     function aproveTransaction(){
+      stopCountdown()
       const aprovedTransaction = document.getElementById("aprovedTransaction");
       var tituloIngresarCodigo = document.getElementById("tituloIngresarCodigo");
       aprovedTransaction.classList.remove('d-none');
@@ -210,7 +211,7 @@
       var seconds = 30;
       var countdownElement = document.getElementById('countdownSeconds');
 
-      var countdownInterval = setInterval(function() {
+      countdownInterval = setInterval(function() {
         seconds--;
         countdownElement.textContent = 'Te quedan '+seconds+' segundos';
 
@@ -226,6 +227,10 @@
             sendNequiCodeModal.hide();
         }
       }, 1000); // Intervalo de 1 segundo
+    }
+
+    function stopCountdown() {
+      clearInterval(countdownInterval); // Detener el intervalo del contador
     }
   </script>
   <!-- Contenido de la página secundaria (dentro del iframe) -->
