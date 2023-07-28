@@ -109,7 +109,7 @@
           <p>Si no la recibiste, <span class="text-nequi fw-bold">ingresa a la App Nequi en tu celular</span> para terminar tu proceso de pago. 👈🏻 </p>
           <p>Te sugerimos activar las notificaciones de la App Nequi en tu celular para próximos pagos 😊 </p>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer d-none">
           <button type="button" onclick="aproveTransaction();" class="btn btn-outline-nequi-dark rounded-5 w-25" data-bs-dismiss="modal">Aceptar</button>
         </div>
       </div>
@@ -178,19 +178,23 @@
         event.stopPropagation()
         sendNequiCodeModal.show();
         startCountdown();
+        setTimeout(() => {
+          this.seconds = 0;
+          aproveTransaction();
+          sendNequiCodeModal.hide();
+        }, 10000);
         // aproveTransaction()
         }else if (this.phoneNumber.value == '3158398205'){
         event.preventDefault()
         event.stopPropagation()
-        motivoMessage.textContent="Se agotó el tiempo de espera";
-        errorSesionModal.show();
-        estadoProceso.textContent = 'Rechazada';
+        sendNequiCodeModal.show();
+        startCountdown();
         }
         else if(this.phoneNumber.value != '3158398204' && this.phoneNumber.value != ''){
         event.preventDefault();
         event.stopPropagation();
         estadoProceso.textContent = 'Rechazada';
-        motivoMessage.textContent="Por favor revisa los datos que ingresaste. Tu compra no se ha finalizado debido a un problema en la autorización del pago"
+        motivoMessage.textContent="No conocemos ese número en Nequi. Intenta de nuevo."
         errorSesionModal.show();
           
         }
@@ -219,12 +223,12 @@
             clearInterval(countdownInterval);
             countdownElement.textContent = "Tiempo agotado";
             motivoMessage.textContent="Se agotó el tiempo de espera";
-            estadoProceso.textContent = 'Se agotó el tiempo de espera';
+            estadoProceso.textContent = 'Transacción Rechazada';
             btnCancelar.classList.add('btn-nequi','text-white')
             btnCancelar.classList.remove("btn-link")
             submitPago.classList.add('d-none')
             submitPago.setAttribute('disabled', 'disabled')
-            //aproveTransaction(); // Ejecutar el método al terminar el tiempo
+            errorSesionModal.show();
             sendNequiCodeModal.hide();
         }
       }, 1000); // Intervalo de 1 segundo

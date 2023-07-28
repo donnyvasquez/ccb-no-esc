@@ -151,7 +151,7 @@
 		})
 
     // Definir la duración en minutos
-    var duration = 1;
+    var duration = 3;
 
     // Calcular el tiempo de finalización
     var endTime = new Date();
@@ -214,7 +214,7 @@ console.log('currentTime: '+currentTime, 'endTime: '+endTime, 'minutos: '+minute
 
     // Reenvío de SMS
     function resendSMS(){
-      duration= 1;
+      duration= 3;
       var endTime = new Date();
       endTime.setMinutes(endTime.getMinutes() + duration);
       var formCodigo = document.getElementById("formCodigo");
