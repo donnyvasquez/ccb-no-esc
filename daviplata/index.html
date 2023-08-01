@@ -83,7 +83,7 @@
       <button type="button" class="btn-close btn-close-white me-2 m-auto d-none" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
   </div>
-  <div class="modal fade" id="errorSesion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="errorSesionLabel" aria-hidden="true">
+  <div class="modal fade d-print-none" id="errorSesion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="errorSesionLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -97,7 +97,7 @@
         </div>
         <div class="flex-column flex-md-row flex-md-row-reverse modal-footer">
           <button type="button" onclick="window.top.location.reload()" class="btn btn-primary w-50">Cerrar</button>
-          <button type="button" class="btn btn-outline-primary">Imprimir</button>
+          <button onclick="imprimirPagina()" type="button" class="btn btn-outline-primary">Imprimir</button>
           <button type="button" class="btn btn-outline-primary">Descargar</button>
         </div>
       </div>
@@ -189,6 +189,9 @@
 
       // Mostrar el valor seleccionado en el elemento
       selectedValueElement.textContent = selectedOption;
+    }
+    function imprimirPagina() {
+      window.print();
     }
   </script>
 </body>

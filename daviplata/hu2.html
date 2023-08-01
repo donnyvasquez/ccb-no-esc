@@ -45,9 +45,9 @@
           <li class="list-group-item"><strong>No. de transacción: </strong> 8764324237</li>
           <li class="list-group-item"><strong>Dirección IP: </strong> 129.234.123.1</li>
         </ul>
-        <div class="d-flex flex-column flex-md-row flex-md-row-reverse gap-2">
+        <div class="d-flex flex-column flex-md-row flex-md-row-reverse gap-2 d-print-none">
           <button type="button" onclick="window.top.location.reload()" class="btn btn-primary">Finalizar</button>
-          <button type="button" class="btn btn-outline-primary">Imprimir</button>
+          <button onclick="imprimirPagina()" type="button" class="btn btn-outline-primary">Imprimir</button>
           <button type="button" class="btn btn-outline-primary">Descargar</button>
         </div>
         </div>
@@ -88,7 +88,7 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="errorSesion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="errorSesionLabel" aria-hidden="true">
+  <div class="modal fade d-print-none" id="errorSesion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="errorSesionLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -106,7 +106,7 @@
         </div>
         <div class="flex-column flex-md-row flex-md-row-reverse modal-footer">
           <button type="button" onclick="window.parent.jQuery.colorbox.close()" class="btn btn-primary w-50">Finalizar</button>
-          <button type="button" class="btn btn-outline-primary">Imprimir</button>
+          <button onclick="imprimirPagina()" type="button" class="btn btn-outline-primary">Imprimir</button>
           <button type="button" class="btn btn-outline-primary">Descargar</button>
         </div>
       </div>
@@ -234,6 +234,9 @@ console.log('currentTime: '+currentTime, 'endTime: '+endTime, 'minutos: '+minute
       formCodigo.classList.add('d-none');
       tituloIngresarCodigo.classList.add('d-none');
       document.getElementById('estadoProceso').textContent = 'Transacción Aprobada';
+    }
+    function imprimirPagina() {
+      window.print();
     }
   </script>
 </body>

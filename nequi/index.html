@@ -49,7 +49,7 @@
         </ul>
         <div class="d-flex flex-column flex-md-row flex-md-row-reverse gap-2">
           <button type="button" onclick="enviarMensajeRecarga()" class="btn btn-nequi text-white rounded-5 w-100">Finalizar</button>
-          <button type="button" class="btn btn-outline-nequi-dark rounded-5">Imprimir</button>
+          <button onclick="imprimirPagina()" type="button" class="btn btn-outline-nequi-dark rounded-5">Imprimir</button>
           <button type="button" class="btn btn-outline-nequi-dark rounded-5">Descargar</button>
         </div>
         </div>
@@ -93,7 +93,7 @@
   </div>
           
   <!-- Modal -->
-  <div class="modal fade" id="sendNequiCodeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal fade d-print-none" id="sendNequiCodeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -116,7 +116,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="errorSesion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="errorSesionLabel" aria-hidden="true">
+  <div class="modal fade d-print-none" id="errorSesion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="errorSesionLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -236,6 +236,9 @@
 
     function stopCountdown() {
       clearInterval(countdownInterval); // Detener el intervalo del contador
+    }
+    function imprimirPagina() {
+      window.print();
     }
   </script>
   <!-- Contenido de la página secundaria (dentro del iframe) -->
