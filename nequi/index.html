@@ -126,7 +126,7 @@
         </div>
         <div class="modal-body">
           <ul class="list-group">
-            <li class="list-group-item"><strong>Motivo:</strong> <span id="motivoMessage">No conocemos ese número en Nequi. Intenta de nuevo.</span></li>
+            <li class="list-group-item"><strong>Motivo:</strong> <span id="motivoMessage">Ese número no tiene una cuenta Nequi, así que no puedes hacer el pago.</span></li>
             <li class="list-group-item"><strong>No. de transacción: </strong> 8764324237</li>
             <li class="list-group-item"><strong>Dirección IP: </strong> 129.234.123.1</li>
           </ul>
@@ -194,7 +194,7 @@
         event.preventDefault();
         event.stopPropagation();
         estadoProceso.textContent = 'Rechazada';
-        motivoMessage.textContent="No conocemos ese número en Nequi. Intenta de nuevo."
+        motivoMessage.textContent="Ese número no tiene una cuenta Nequi, así que no puedes hacer el pago."
         errorSesionModal.show();
           
         }
