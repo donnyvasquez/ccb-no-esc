@@ -311,6 +311,14 @@ textarea {
     border-color: #d43f3a!important;
   }
 
+  .alert-icon-bell{
+    background: url('../images/notification_info.png') no-repeat center 35%;
+    background-size: contain;
+    align-self: flex-start;
+    width: 72px;
+    height: 72px;
+  }
+
   #pasarelas [class^="col-"] .panel {
     height: 100%;
   }
