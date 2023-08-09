@@ -9,37 +9,97 @@
 <body class="text-bg-light py-5">
   <div class="container">
     <H2 class="text-center mb-4">UX Pasarela CCB</H2>
-    <div class="row">
-      <div class="col"></div>
-      <div class="col-auto">
-        <div class="car-d">
+    <div class="row g-3">
+      <div class="col-12 col-lg-6">
+        <div class="card bg-danger text-bg-danger">
+          <div class="card-header">
+            <h4 class="card-title">Flujo de navegación Pasarela CCB</h4>
+            <p class="card-text">Prototipo de flujo de navegación de la pasarela de pagos de Cámara de Comercio de Bogotá, de pagos en línea con Daviplata y Nequi.</p>
+          </div>
           <div class="card-body my-4">
-            <h5 class="card-title">Flujo de navegación Pasarela CCB</h5>
-            <p class="card-text">UX / UI del flujo de navegación para las historias de usario de la pasarela de pagos de Cámara de Comercio de Bogotá.</p>
-            <ul class="list-group">
-              <li class="list-group-item"><h3>Datos correctos de usuario</h3>
-              <p>Documento de indentidad: 73188623</p>
-              </li>
-              <li class="list-group-item"><h3>Datos correctos de plataforma</h3>
-              <p>Código: 957801</p>
-              </li>
-              <li class="list-group-item"><h3>Datos correctos de telefono Nequi</h3>
-              <p>Teléfono: 3158398204</p>
-              <p>Será aprobada la transacción como si el usuario diera click en la notificación del celular antes de los 30 segundos de caducidad.</p>
-              </li>
-              <li class="list-group-item"><h3>Datos para tiempo agotado en Nequi</h3>
-              <p>Teléfono: 3158398205</p>
-              <p>El tiempo se agotará y se rechazara la transacción.</p>
-              </li>
-            </ul>
+            <h5 class="card-title">Contexto</h5>
+            <p class="card-text">Un usuario de los servicios de la Cámara de Comercio de Bogotá ingresará a hacer un pago y usará como pasarela Daviplata o Nequi en vez de usar PSE para pagos con tarjeta o cuentas bancarias.</p>
+            <p class="card-text">Para la prueba de Usabilidad sera necesario que conserves los datos que tenemos a continuación.</p>
           </div>
           <div class="card-footer">
-            <a class="btn btn-dark" href="hu1.html" rel="noopener noreferrer">Ver resumen de pago</a>
+            <a class="btn btn-dark" target="_blank" href="hu1.html" rel="noopener noreferrer">Iniciar prueba</a>
           </div>
         </div>
       </div>
-      <div class="col"></div>
+      <div class="col-12 col-lg-6">
+        <ul class="list-group">
+          <li class="list-group-item"><h3>Datos correctos de usuario</h3>
+            <p>Documento de indentidad: 73188623  <button class="btn boton-copiar text-bg-light bg-info-subtle badge" data-elemento="73188623"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+              <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+              <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+            </svg> copiar</button></p>
+          </li>
+          <li class="list-group-item"><h3>Datos correctos de plataforma</h3>
+            <p>Código: 957801 <button class="btn boton-copiar text-bg-light bg-info-subtle badge" data-elemento="957801"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+              <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+              <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+            </svg> copiar</button></p>
+          </li>
+          <li class="list-group-item">
+            <h3>Datos para teléfono sin cuenta en Nequi</h3>
+            <p>Escriba un número de celular diferente a los suministrados para obtener el error de número sin cuenta de Nequi.</p>
+          </li>
+          <li class="list-group-item"><h3>Datos para tiempo agotado en Nequi</h3>
+            <p>Teléfono: 3158398205 <button class="btn boton-copiar text-bg-light bg-info-subtle badge" data-elemento="3158398205"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+              <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+              <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+            </svg> copiar</button></p>
+            <p>El tiempo se agotará y se rechazara la transacción.</p>
+          </li>
+          <li class="list-group-item"><h3>Datos correctos de telefono Nequi</h3>
+            <p>Teléfono: 3158398204 <button class="btn boton-copiar text-bg-light bg-info-subtle badge" data-elemento="3158398204"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+              <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+              <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+            </svg> copiar</button></p>
+            <p>Será aprobada la transacción como si el usuario diera click en la notificación del celular antes de los 30 segundos de caducidad.</p>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
+  <script>
+    // Obtener todos los botones con la clase 'boton-copiar'
+    var botonesCopiar = document.querySelectorAll(".boton-copiar");
+    
+    // Iterar sobre cada botón y agregar un evento de clic
+    botonesCopiar.forEach(function(boton) {
+      boton.addEventListener("click", function() {
+        // Obtener el atributo 'data-elemento' del botón clicado
+        var elementoID = boton.getAttribute("data-elemento");
+        
+        // Seleccionar el elemento de texto a copiar usando el atributo 'data-elemento'
+        var textoACopiar = document.querySelector("[data-elemento='" + elementoID + "']");
+        
+        // Crear un área de texto temporal y asignarle el contenido
+        var areaDeTextoTemporal = document.createElement("textarea");
+        areaDeTextoTemporal.style.position = "fixed"; // Necesario para que funcione en Safari
+        areaDeTextoTemporal.value = textoACopiar.getAttribute("data-elemento");
+        document.body.appendChild(areaDeTextoTemporal);
+        
+        // Seleccionar y copiar el texto en el área de texto temporal
+        areaDeTextoTemporal.select();
+        document.execCommand("copy");
+        
+        // Eliminar el área de texto temporal
+        document.body.removeChild(areaDeTextoTemporal);
+        
+        // Cambiar el contenido del botón clicado al SVG
+        var svgContent = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/> <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/> <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/> </svg> copiado!';
+        boton.innerHTML = svgContent;
+        
+        // Restablecer el contenido de los otros botones
+        botonesCopiar.forEach(function(otroBoton) {
+          if (otroBoton !== boton) {
+            otroBoton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg> copiar';
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
