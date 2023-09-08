@@ -1,3 +1,16 @@
+	// Función que se ejecutará antes de que la ventana se cierre
+	window.addEventListener('beforeunload', function (event) {
+		// Cancelar el cierre por defecto para mostrar una confirmación personalizada
+		event.preventDefault();
+
+		// Mostrar un mensaje de confirmación personalizado
+		var mensaje = '¿Estás seguro de que quieres abandonar la transacción?';
+		event.returnValue = mensaje;
+
+		// Devolver el mensaje para mostrarlo en el cuadro de diálogo
+		return mensaje;
+	});
+
 (function(w){
 	var sw = document.body.clientWidth,
 		sh = document.body.clientHeight;
