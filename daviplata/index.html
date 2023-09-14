@@ -56,7 +56,7 @@
           </div>
           <div class="d-flex flex-column gap-3">
             <button class="col btn btn-daviplata text-white" type="submit">Continuar</button>
-            <button id="btnCancelar" name="Cancelar pago con Daviplata" class="col btn btn-outline-secondary" type="button" role="button">Cancelar</button>
+            <button id="btnCancelar" data-bs-toggle="modal" data-bs-target="#confirmClose" name="Cancelar pago con Daviplata" class="col btn btn-outline-secondary" type="button" role="button">Cancelar</button>
           </div>
         </form>
       </div>
@@ -322,16 +322,33 @@
   </tr>
 </table>
 </div>
-
+<!-- Modal -->
+<div class="modal fade" id="confirmClose" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmCloseLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="confirmCloseLabel">¿Quieres abandonar el pago?</h1>
+        <button type="button" class="btn-close d-none" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body d-flex flex-row-reverse gap-2">
+        <button type="button" class="btn btn-sm btn-outline-danger btnCerrarColorBox">Sí, voy a abandonar</button>
+        <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">No, quiero continuar con el pago</button>
+      </div>
+    </div>
+  </div>
+</div>
   <script src="dist/js/bootstrap.bundle.js"></script>
   <script>
+    const btnCerrarColorBoxElements = document.querySelectorAll('.btnCerrarColorBox');
     // Obtén el botón por su ID
-    var btnCancelar = document.getElementById('btnCancelar');
+    const btnCancelar = document.getElementById('btnCancelar');
     
     // Agrega el evento de clic al botón
-    btnCancelar.addEventListener('click', function() {
+    btnCerrarColorBoxElements.forEach(element => {
+      element.addEventListener('click', function() {
       // Recarga la página
-      window.top.location.reload();
+      window.parent.jQuery.colorbox.close();
+      });
     });
 
     

@@ -57,7 +57,7 @@
               <div class="d-flex gap-3 d-none">
                 <button id="countdownPercent" onclick="resendSMS()" class="col btn btn-outline-nequi rounded-5 disabled" type="button">Generar nuevo código</button>
               </div>
-            <button id="btnCancelar" name="Cancelar pago con Nequi" class="col btn btn-link rounded-5" type="button" role="button">Cancelar</button>
+            <button id="btnCancelar" data-bs-toggle="modal" data-bs-target="#confirmClose" name="Cancelar pago con Nequi" class="col btn btn-link rounded-5" type="button" role="button">Cancelar</button>
             <p id="nuevoSMS" class="text-danger d-none">Un nuevo código fue enviado a tu celular.</p>
             <p id="contdoaWrap" class="d-none">Podrás generar un nuevo código dentro de <span class="fw-bold text-nequi" id="countdown">10 minutos</span>.</p>
           </div>
@@ -358,15 +358,35 @@
   </tr>
 </table>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="confirmClose" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmCloseLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="confirmCloseLabel">¿Quieres abandonar el pago?</h1>
+        <button type="button" class="btn-close d-none" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body d-flex flex-row-reverse gap-2">
+        <button type="button" class="btn rounded-5 btn-sm btn-outline-nequi btnCerrarColorBox">Sí, voy a abandonar</button>
+        <button type="button" class="btn rounded-5 btn-sm btn-primary" data-bs-dismiss="modal">No, quiero continuar con el pago</button>
+      </div>
+    </div>
+  </div>
+</div>
   <script src="../daviplata/dist/js/bootstrap.bundle.js"></script>
   <script>
+
+    const btnCerrarColorBoxElements = document.querySelectorAll('.btnCerrarColorBox');
     // Obtén el botón por su ID
     const btnCancelar = document.getElementById('btnCancelar');
     
     // Agrega el evento de clic al botón
-    btnCancelar.addEventListener('click', function() {
+    btnCerrarColorBoxElements.forEach(element => {
+      element.addEventListener('click', function() {
       // Recarga la página
       window.parent.jQuery.colorbox.close();
+      });
     });
     
 		// Obtener todos los formularios que se quieren validar
