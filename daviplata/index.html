@@ -60,8 +60,11 @@
           </div>
         </form>
       </div>
-      <div class="col-12 col-md-6 my-4">
-        <div class="resumen-pago orden-compra">
+      <div class="col-12 col-md-6 mt-4">
+        <div class="end-0 position-absolute top-0">
+          <button style="width: 2em;height: 2em;"  data-bs-toggle="modal" data-bs-target="#confirmClose" type="button" role="button" name="Cancelar pago con Daviplata" class="bg-danger bg-light btn-close btn-lg me-1 mt-1 rounded-circle"></button>
+        </div>
+        <div class="resumen-pago orden-compra mt-5">
           <div class="list-group">
             <div class="list-group-item list-group-item-action">
               <h6 class="mb-1">Número de solicitud</h6>
@@ -117,7 +120,7 @@
           <p>Por tu seguridad cerramos la sesión.</p>
         </div>
         <div class="flex-column flex-md-row flex-md-row-reverse modal-footer">
-          <button type="button" onclick="window.top.location.reload()" class="btn btn-primary w-50">Cerrar</button>
+          <button type="button" class="btn btn-primary w-50  btnCerrarColorBox">Cerrar</button>
           <button onclick="imprimirPagina()" type="button" class="btn btn-outline-primary">Imprimir</button>
           <button type="button" class="btn btn-outline-primary">Descargar</button>
         </div>
@@ -327,12 +330,12 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="confirmCloseLabel">¿Quieres abandonar el pago?</h1>
+        <h1 class="modal-title fs-5" id="confirmCloseLabel">¿Estás seguro de que deseas salir del proceso de pago?</h1>
         <button type="button" class="btn-close d-none" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body d-flex flex-row-reverse gap-2">
-        <button type="button" class="btn btn-sm btn-outline-danger btnCerrarColorBox">Sí, voy a abandonar</button>
-        <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">No, quiero continuar con el pago</button>
+        <button type="button" class="btn btn-sm btn-outline-danger btnCerrarColorBox">Sí, voy a salir del proceso de pago</button>
+        <button type="button" class="btn btn-sm btn-link" data-bs-dismiss="modal">No quiero salir</button>
       </div>
     </div>
   </div>
