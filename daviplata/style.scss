@@ -138,4 +138,7 @@ $theme-colors: (
     }
   }
 }
+.border-end-start-radius-sm{
+  border-end-start-radius: 0.25rem;
+}
 @import "../node_modules/bootstrap/scss/bootstrap";
