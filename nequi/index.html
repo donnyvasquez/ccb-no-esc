@@ -130,8 +130,8 @@
           <p>Si no la recibiste, <span class="text-nequi fw-bold">ingresa a la App Nequi en tu celular</span> para terminar tu proceso de pago. 👈🏻 </p>
           <p>Te sugerimos activar las notificaciones de la App Nequi en tu celular para próximos pagos 😊 </p>
         </div>
-        <div class="modal-footer d-none">
-          <button type="button" onclick="aproveTransaction();" class="btn btn-outline-nequi-dark rounded-5 w-25" data-bs-dismiss="modal">Aceptar</button>
+        <div class="modal-footer">
+          <button type="button" onclick="abandonarEspera();" class="btn btn-outline-nequi-dark rounded-5 w-50" data-bs-dismiss="modal">Ya no quiero pagar</button>
         </div>
       </div>
     </div>
@@ -373,6 +373,10 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="bg-body end-0 p-1 position-fixed shadow top-0 z-3 border-end-start-radius-sm">
+  <button data-bs-toggle="modal" data-bs-target="#confirmClose" type="button" role="button" name="Cancelar pago con Nequi" class="bg-danger bg-light btn-close btn-lg"></button>
 </div>
   <script src="../daviplata/dist/js/bootstrap.bundle.js"></script>
   <script>
