@@ -130,8 +130,8 @@
           <p>Si no la recibiste, <span class="text-nequi fw-bold">ingresa a la App Nequi en tu celular</span> para terminar tu proceso de pago. 👈🏻 </p>
           <p>Te sugerimos activar las notificaciones de la App Nequi en tu celular para próximos pagos 😊 </p>
         </div>
-        <div class="modal-footer d-none">
-          <button type="button" class="btn btn-outline-nequi-dark rounded-5 w-50" data-bs-dismiss="modal">Ya no quiero pagar</button>
+        <div class="modal-footer">
+          <button type="button" onclick="cancelCountdown()" class="btn btn-outline-nequi-dark rounded-5 w-50">Salir del proceso de pago</button>
         </div>
       </div>
     </div>
@@ -454,10 +454,24 @@
       tituloIngresarCodigo.classList.add('d-none');
       estadoProceso.textContent = 'Transacción Aprobada';
     }
+    function cancelCountdown(){
+      clearInterval(countdownInterval);
+      motivoMessage.textContent="Has cancelado el pago";
+      estadoProceso.textContent = 'Transacción Rechazada';
+      btnCancelar.classList.add('btn-nequi','text-white')
+      btnCancelar.classList.remove("btn-link")
+      submitPago.classList.add('d-none')
+      submitPago.setAttribute('disabled', 'disabled')
+      errorSesionModal.show();
+      sendNequiCodeModal.hide();
+    }
     function startCountdown() {
       var seconds = 30;
       var countdownElement = document.getElementById('countdownSeconds');
-
+      if (countdownInterval) {
+    clearInterval(countdownInterval); // Detén el contador anterior si existe
+  }
+  countdownElement.textContent = 'Te quedan ' + seconds + ' segundos';
       countdownInterval = setInterval(function() {
         seconds--;
         countdownElement.textContent = 'Te quedan '+seconds+' segundos';
