@@ -41,7 +41,7 @@
 
 jQuery(document).ready(function(){
 	console.log('Activando el colorbox');
-	jQuery(".iframe").colorbox({iframe:true, width:"960px",maxWidth:"90%", height:"75%", overlayClose:false, closeButton:false, escKey:false	, onComplete: function() {
+	jQuery(".iframe").colorbox({iframe:true, width:"960px",maxWidth:"90%", height:"90%", overlayClose:false, closeButton:false, escKey:false	, onComplete: function() {
 		$(window).on("resize", function() {
 		  $.colorbox.resize({
 			width: $(window).width() > 960 ? "960px" : "90%",
